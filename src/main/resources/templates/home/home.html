@@ -122,11 +122,39 @@
         </div>
     </div>
 
-<div style="background-color: blue">
-    <div style="background-color: red"> Shop info</div>
-    <div style="background-color: green">Filler info</div>
-    <div style="background-color: blue">Shop policies</div>
-</div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div th:object="${shops}">
+                    <p>Monday: <span th:text="${shops.monOpen}"></span> - <span th:text="${shops.monClose}"></span> </p>
+                </div>
+                <div th:object="${shops}">
+                    <p>Tuesday: <span th:text="${shops.tueOpen}"></span> - <span th:text="${shops.tueClose}"></span> </p>
+                </div>
+                <div th:object="${shops}">
+                    <p>Wednesday: <span th:text="${shops.wedOpen}"></span> - <span th:text="${shops.wedClose}"></span> </p>
+                </div>
+                <div th:object="${shops}">
+                    <p>Thursday: <span th:text="${shops.thuOpen}"></span> - <span th:text="${shops.thuClose}"></span> </p>
+                </div>
+                <div th:object="${shops}">
+                    <p>Friday: <span th:text="${shops.friOpen}"></span> - <span th:text="${shops.friClose}"></span> </p>
+                </div>
+                <div th:object="${shops}">
+                    <p>Saturday: <span th:text="${shops.satOpen}"></span> - <span th:text="${shops.satClose}"></span> </p>
+                </div>
+                <div th:object="${shops}">
+                    <p>Sunday: <span th:text="${shops.sunOpen}"></span> - <span th:text="${shops.sunClose}"></span> </p>
+                </div>
+            </div>
+            <div class="col">
+                Column
+            </div>
+            <div class="col">
+                Column
+            </div>
+        </div>
+    </div>
 
 </body>
 <!-- JavaScript Bundle with Popper -->
