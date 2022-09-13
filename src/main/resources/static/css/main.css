@@ -2,3 +2,11 @@
     height: 75vh;
     z-index: -1;
 }
+
+.body{
+    background: black;
+}
+
+#shopInfo{
+    color: rgb(255, 134, 10);
+}
