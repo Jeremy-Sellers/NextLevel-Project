@@ -8,7 +8,7 @@ public class Barber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(nullable = false, length = 30)
     private String firstName;
