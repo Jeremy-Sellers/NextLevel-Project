@@ -1,6 +1,7 @@
 package com.personal.nextlevel.controller;
 
 import com.personal.nextlevel.models.Barber;
+import com.personal.nextlevel.models.Drink;
 import com.personal.nextlevel.repository.BarberRepository;
 import com.personal.nextlevel.repository.DrinkRepository;
 import com.personal.nextlevel.repository.ReviewRepository;
@@ -27,6 +28,8 @@ public class FormsController {
     public String registerBarber(Model model){
         model.addAttribute("barber", new Barber());
         model.addAttribute("barbers", barberDao.findAll());
+        model.addAttribute("drink", new Drink());
+        model.addAttribute("drinks", drinkDao.findAll());
         return "home/forms";
     }
 
@@ -39,6 +42,18 @@ public class FormsController {
     @PostMapping("/Controls/Delete")
     public String deleteBarber(@RequestParam(name = "deleteBarber") long id){
         barberDao.deleteById(id);
+        return "redirect:/";
+    }
+
+    @PostMapping("/Controls/NewDrink")
+    public String addDrink(@ModelAttribute Drink drink){
+        drinkDao.save(drink);
+        return "redirect:/";
+    }
+
+    @PostMapping("/Controls/DeleteDrink")
+    public String deleteDrink(@RequestParam(name = "deleteDrink") long id){
+        drinkDao.deleteById(id);
         return "redirect:/";
     }
 }
