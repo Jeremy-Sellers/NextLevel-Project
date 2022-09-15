@@ -2,6 +2,7 @@ package com.personal.nextlevel.controller;
 
 import com.personal.nextlevel.models.Barber;
 import com.personal.nextlevel.models.Drink;
+import com.personal.nextlevel.models.Shop;
 import com.personal.nextlevel.repository.BarberRepository;
 import com.personal.nextlevel.repository.DrinkRepository;
 import com.personal.nextlevel.repository.ReviewRepository;
@@ -30,6 +31,7 @@ public class FormsController {
         model.addAttribute("barbers", barberDao.findAll());
         model.addAttribute("drink", new Drink());
         model.addAttribute("drinks", drinkDao.findAll());
+        model.addAttribute("shop", shopDao.findById(1));
         return "home/forms";
     }
 
@@ -54,6 +56,29 @@ public class FormsController {
     @PostMapping("/Controls/DeleteDrink")
     public String deleteDrink(@RequestParam(name = "deleteDrink") long id){
         drinkDao.deleteById(id);
+        return "redirect:/";
+    }
+
+    @PostMapping("/Controls/{id}")
+    public String editInfo(@ModelAttribute Shop shop){
+        Shop findShop = shopDao.findById(1);
+        findShop.setShopHeading(shop.getShopHeading());
+        findShop.setShopDescription(shop.getShopDescription());
+        findShop.setMonOpen(shop.getMonOpen());
+        findShop.setMonClose(shop.getMonClose());
+        findShop.setTueOpen(shop.getTueOpen());
+        findShop.setTueClose(shop.getTueClose());
+        findShop.setWedOpen(shop.getWedOpen());
+        findShop.setWedClose(shop.getWedClose());
+        findShop.setThuOpen(shop.getThuOpen());
+        findShop.setThuClose(shop.getThuClose());
+        findShop.setFriOpen(shop.getFriOpen());
+        findShop.setFriClose(shop.getFriClose());
+        findShop.setSatOpen(shop.getSatOpen());
+        findShop.setSatClose(shop.getSatClose());
+        findShop.setSunOpen(shop.getSunOpen());
+        findShop.setSunClose(shop.getSunClose());
+        shopDao.save(findShop);
         return "redirect:/";
     }
 }

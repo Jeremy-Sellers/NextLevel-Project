@@ -9,6 +9,8 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private String shopHeading;
+
     private String shopDescription;
 
     private String shopTeleNum;
@@ -37,8 +39,9 @@ public class Shop {
     public Shop() {
     }
 
-    public Shop(long id, String shopDescription, String shopTeleNum, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose) {
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose) {
         this.id = id;
+        this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
         this.shopTeleNum = shopTeleNum;
         this.monOpen = monOpen;
@@ -63,6 +66,14 @@ public class Shop {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getShopHeading() {
+        return shopHeading;
+    }
+
+    public void setShopHeading(String shopHeading) {
+        this.shopHeading = shopHeading;
     }
 
     public String getShopDescription() {

@@ -77,9 +77,9 @@
             <div class="row g-0">
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title text-center">About the shop</h5>
                         <div class="card text-center" style="width: auto;" th:each="shop : ${shops}">
                             <div class="card-body">
+                                <h5 class="card-title text-center" th:text="${shop.shopHeading}"></h5>
                                 <p class="card-text" th:text="${shop.shopDescription}"></p>
                             </div>
                         </div>
