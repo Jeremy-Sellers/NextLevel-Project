@@ -11,7 +11,7 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Accordion Item #1
+                Add New Barber
             </button>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -46,12 +46,20 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Accordion Item #2
+                Delete Barber
             </button>
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            <div class="accordion-body" th:each="barbers : ${barbers}">
+                <div class="card-body">
+                    <h3 th:text="${barbers.firstName}"></h3>
+                </div>
+                <form class="deleteForm" th:method="post" th:action="@{/Controls/Delete}">
+                    <input type="hidden" th:value="${barbers.id}" name="deleteBarber">
+                    <button class="btn btn-primary px-3 mx-auto border-0">
+                        Delete Barber
+                    </button>
+                </form>
             </div>
         </div>
     </div>

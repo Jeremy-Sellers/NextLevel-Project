@@ -7,9 +7,7 @@ import com.personal.nextlevel.repository.ReviewRepository;
 import com.personal.nextlevel.repository.ShopRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class FormsController {
@@ -28,6 +26,7 @@ public class FormsController {
     @GetMapping("/Controls")
     public String registerBarber(Model model){
         model.addAttribute("barber", new Barber());
+        model.addAttribute("barbers", barberDao.findAll());
         return "home/forms";
     }
 
@@ -35,5 +34,11 @@ public class FormsController {
     public String addBarber(@ModelAttribute Barber barber){
         barberDao.save(barber);
         return "home/forms";
+    }
+
+    @PostMapping("/Controls/Delete")
+    public String deleteBarber(@RequestParam(name = "deleteBarber") long id){
+        barberDao.deleteById(id);
+        return "redirect:/";
     }
 }
