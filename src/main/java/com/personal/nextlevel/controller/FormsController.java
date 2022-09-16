@@ -7,9 +7,15 @@ import com.personal.nextlevel.repository.BarberRepository;
 import com.personal.nextlevel.repository.DrinkRepository;
 import com.personal.nextlevel.repository.ReviewRepository;
 import com.personal.nextlevel.repository.ShopRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 @Controller
 public class FormsController {
@@ -80,5 +86,23 @@ public class FormsController {
         findShop.setSunClose(shop.getSunClose());
         shopDao.save(findShop);
         return "redirect:/";
+    }
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
+
+    @PostMapping("/fileupload")
+    public String saveFile(
+            @RequestParam(name = "file") MultipartFile uploadedFile
+    ) {
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "home/forms";
     }
 }

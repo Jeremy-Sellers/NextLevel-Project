@@ -12,7 +12,7 @@
 
     <header>
 <!--Carousel of shop photos-->
-        <div id="photoCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" >
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="/images/pexels-kaique-rocha-114797.jpg" class="d-block w-100" alt="...">
@@ -94,7 +94,8 @@
     </section>
 
     <div class="reviewsCarousel px-3 d-flex min justify-content-center" id="reviews">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+
+        <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" th:each="review : ${reviews}" th:unless="${review.id > 4}">
                     <!--Creates card in carousel for every review-->
@@ -123,7 +124,7 @@
         </div>
     </div>
 
-    <div class="container text-center m-2" id="shopInfo">
+    <div class="container text-center m-2" id="shopInfo" style="font-family: Serif">
         <div class="row">
             <div class="col">
                 <h3>Shop Hours</h3>
@@ -164,17 +165,6 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script>
-    const reviewCarouselElement = document.querySelector('#reviewCarousel');
-    reviewCarouselElement.addEventListener('slide.bs.carousel', event => {
-        direction: "right"
-    })
-
-
-    const myCarouselElement = document.querySelector('#photoCarousel')
-    const carousel = new bootstrap.Carousel(myCarouselElement, {
-        interval: 2000,
-        wrap: true
-    })
 
 </script>
 </html>

@@ -78,8 +78,8 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+            </div>
         </div>
-    </div>
     </div>
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingFour">
@@ -180,6 +180,24 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                Upload file
+            </button>
+        </h2>
+        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form action="/fileupload" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">File to upload</label>
+                        File to upload: <input type="file" name="file" class="form-control" id="file" accept="image/png, image/jpeg">
+                    </div>
+                    <input type="submit" value="upload">
                 </form>
             </div>
         </div>

@@ -25,15 +25,19 @@ public class Barber {
     @Column()
     private String link;
 
+    @Column()
+    private String photo;
+
     public Barber(){}
 
-    public Barber(long id, String firstName, String lastName, String email, String bio, String link) {
+    public Barber(long id, String firstName, String lastName, String email, String bio, String link, String photo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.bio = bio;
         this.link = link;
+        this.photo = photo;
     }
 
     public long getId() {
@@ -82,5 +86,13 @@ public class Barber {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
