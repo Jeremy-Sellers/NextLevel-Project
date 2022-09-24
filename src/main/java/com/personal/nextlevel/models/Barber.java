@@ -1,6 +1,7 @@
 package com.personal.nextlevel.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "barbers")
@@ -8,6 +9,7 @@ public class Barber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "barber_id")
     private long id;
 
     @Column(nullable = false, length = 30)
@@ -25,19 +27,20 @@ public class Barber {
     @Column()
     private String link;
 
-    @Column()
-    private String photo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "barber")
+    private List<Photo> photos;
 
     public Barber(){}
 
-    public Barber(long id, String firstName, String lastName, String email, String bio, String link, String photo) {
+
+
+    public Barber(long id, String firstName, String lastName, String email, String bio, String link) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.bio = bio;
         this.link = link;
-        this.photo = photo;
     }
 
     public long getId() {
@@ -86,13 +89,5 @@ public class Barber {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 }
