@@ -40,7 +40,7 @@
 
         <div th:each="barber : ${barbers}">
             <div class="card m-2" style="width: 18rem;">
-                <img src="/images/pexels-cliford-mervil-2398220.jpg" class="card-img-top" alt="...">
+                <img th:src="${barber.photos.photoName}">
                 <div class="card-body">
                     <h5 th:text="${barber.firstName}"></h5>
                     <p th:text="${barber.bio}"></p>

@@ -1,5 +1,6 @@
 package com.personal.nextlevel.models;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "shops")
@@ -36,10 +37,13 @@ public class Shop {
     private String sunOpen;
     private String sunClose;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
+    private List<Photo> photos;
+
     public Shop() {
     }
 
-    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose) {
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos) {
         this.id = id;
         this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
@@ -58,6 +62,7 @@ public class Shop {
         this.satClose = satClose;
         this.sunOpen = sunOpen;
         this.sunClose = sunClose;
+        this.photos = photos;
     }
 
     public long getId() {
@@ -202,5 +207,13 @@ public class Shop {
 
     public void setSunClose(String sunClose) {
         this.sunClose = sunClose;
+    }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
     }
 }

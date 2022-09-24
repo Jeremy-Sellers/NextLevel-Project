@@ -42,6 +42,7 @@ public class FormsController {
         model.addAttribute("drink", new Drink());
         model.addAttribute("drinks", drinkDao.findAll());
         model.addAttribute("shop", shopDao.findById(1));
+        model.addAttribute("photo", photoDao.findAll());
         return "home/forms";
     }
 
@@ -98,13 +99,18 @@ public class FormsController {
     @PostMapping("/fileupload")
     public String saveFile(
             @RequestParam(name = "file") MultipartFile uploadedFile,
-            Model model
+            Model model, @RequestParam(name = "barber") long id
     ) {
         String filename = uploadedFile.getOriginalFilename();
         String filepath = Paths.get(uploadPath, filename).toString();
         File destinationFile = new File(filepath);
         try {
             uploadedFile.transferTo(destinationFile);
+            Barber setBarberImage = barberDao.getById(id);
+            Photo photo = new Photo();
+            photo.setPhotoName(filename);
+            photo.setBarber(setBarberImage);
+            photoDao.save(photo);
             model.addAttribute("message", "File successfully uploaded!");
         } catch (IOException e) {
             e.printStackTrace();

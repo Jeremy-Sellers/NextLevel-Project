@@ -8,8 +8,8 @@ import java.util.List;
 public class Barber {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "barber_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false, length = 30)
@@ -32,15 +32,14 @@ public class Barber {
 
     public Barber(){}
 
-
-
-    public Barber(long id, String firstName, String lastName, String email, String bio, String link) {
+    public Barber(long id, String firstName, String lastName, String email, String bio, String link, List<Photo> photos) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.bio = bio;
         this.link = link;
+        this.photos = photos;
     }
 
     public long getId() {
@@ -89,5 +88,13 @@ public class Barber {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
     }
 }

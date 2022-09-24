@@ -1,9 +1,7 @@
 package com.personal.nextlevel.controller;
 
-import com.personal.nextlevel.repository.BarberRepository;
-import com.personal.nextlevel.repository.DrinkRepository;
-import com.personal.nextlevel.repository.ReviewRepository;
-import com.personal.nextlevel.repository.ShopRepository;
+import com.personal.nextlevel.models.Photo;
+import com.personal.nextlevel.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +12,14 @@ public class HomeController {
     private final DrinkRepository drinkDao;
     private final ShopRepository shopDao;
     private final ReviewRepository reviewDao;
+    private final PhotoRepository photoDao;
 
-    public HomeController(BarberRepository barberDao, DrinkRepository drinkDao, ShopRepository shopDao, ReviewRepository reviewDao) {
+    public HomeController(BarberRepository barberDao, DrinkRepository drinkDao, ShopRepository shopDao, ReviewRepository reviewDao, PhotoRepository photoDao) {
         this.barberDao = barberDao;
         this.drinkDao = drinkDao;
         this.shopDao = shopDao;
         this.reviewDao = reviewDao;
+        this.photoDao = photoDao;
     }
 
     @GetMapping("/")
