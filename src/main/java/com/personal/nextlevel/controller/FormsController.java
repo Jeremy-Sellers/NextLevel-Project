@@ -107,6 +107,7 @@ public class FormsController {
         try {
             uploadedFile.transferTo(destinationFile);
             Barber setBarberImage = barberDao.getById(id);
+            setBarberImage.setPhotoName(filename);
             Photo photo = new Photo();
             photo.setPhotoName(filename);
             photo.setBarber(setBarberImage);

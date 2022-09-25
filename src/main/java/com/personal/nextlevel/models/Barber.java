@@ -27,12 +27,15 @@ public class Barber {
     @Column()
     private String link;
 
+    @Column
+    private String photoName;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "barber")
     private List<Photo> photos;
 
     public Barber(){}
 
-    public Barber(long id, String firstName, String lastName, String email, String bio, String link, List<Photo> photos) {
+    public Barber(long id, String firstName, String lastName, String email, String bio, String link, List<Photo> photos, String photoName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,6 +43,7 @@ public class Barber {
         this.bio = bio;
         this.link = link;
         this.photos = photos;
+        this.photoName = photoName;
     }
 
     public long getId() {
@@ -88,6 +92,14 @@ public class Barber {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     public List<Photo> getPhotos() {
