@@ -28,6 +28,7 @@ public class HomeController {
         model.addAttribute("drinks", drinkDao.findAll());
         model.addAttribute("shops", shopDao.findById(1));
         model.addAttribute("reviews", reviewDao.findAll());
+        model.addAttribute("photos", photoDao.findAllByShop(shopDao.getById(1)));
         return "home/home";
     }
 }

@@ -47,9 +47,24 @@ public class FormsController {
     }
 
     @PostMapping("/Controls")
-    public String addBarber(@ModelAttribute Barber barber){
+    public String addBarber(@ModelAttribute Barber barber,@RequestParam(name = "file") MultipartFile uploadedFile){
         barberDao.save(barber);
+
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            Photo photo = new Photo();
+            photo.setPhotoName(filename);
+            photo.setBarber(barber);
+            barber.setPhotoName(filename);
+            photoDao.save(photo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "redirect:/";
+
     }
 
     @PostMapping("/Controls/Delete")
@@ -106,17 +121,37 @@ public class FormsController {
         File destinationFile = new File(filepath);
         try {
             uploadedFile.transferTo(destinationFile);
-            Barber setBarberImage = barberDao.getById(id);
-            setBarberImage.setPhotoName(filename);
+            Barber barberForImage = barberDao.getById(id);
+            barberForImage.setPhotoName(filename);
             Photo photo = new Photo();
             photo.setPhotoName(filename);
-            photo.setBarber(setBarberImage);
+            photo.setBarber(barberForImage);
             photoDao.save(photo);
             model.addAttribute("message", "File successfully uploaded!");
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("message", "Oops! Something went wrong! " + e);
         }
+        return "redirect:/";
+    }
+
+    @PostMapping("/shopImageUpload")
+    public String uploadShopImage(@RequestParam(name = "file") MultipartFile uploadedFile){
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            Photo photo = new Photo();
+            photo.setPhotoName(filename);
+            Shop shop = shopDao.getById(1);
+            photo.setShop(shop);
+            photoDao.save(photo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         return "redirect:/";
     }
 }

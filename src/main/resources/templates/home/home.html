@@ -13,16 +13,16 @@
     <header>
 <!--Carousel of shop photos-->
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/images/pexels-kaique-rocha-114797.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-inner" th:each="photo : ${photos}">
+                <div class="carousel-item active" >
+                    <img th:src="@{${'/images/' + photo.photoName}}" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-item">
-                    <img src="/images/pexels-bella-white-635279.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="/images/pexels-cliford-mervil-2398220.jpg" class="d-block w-100" alt="...">
-                </div>
+<!--                <div class="carousel-item">-->
+<!--                    <img src="/images/pexels-bella-white-635279.jpg" class="d-block w-100" alt="...">-->
+<!--                </div>-->
+<!--                <div class="carousel-item">-->
+<!--                    <img src="/images/pexels-cliford-mervil-2398220.jpg" class="d-block w-100" alt="...">-->
+<!--                </div>-->
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -55,8 +55,8 @@
 
         <div class="card mb-3" style="width: auto">
             <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="/images/pexels-kaique-rocha-114797.jpg" class="img-fluid rounded-start p-3" alt="...">
+                <div class="col-md-4" th:object="${shops}">
+                    <img th:src="@{${'/images/' + shops.drinkPhotoName}}" class="img-fluid rounded-start p-3" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

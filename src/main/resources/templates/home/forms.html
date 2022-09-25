@@ -16,7 +16,7 @@
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form th:action="@{/Controls}" method="post" th:object="${barber}">
+                <form th:action="@{/Controls}" method="post" th:object="${barber}" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
                         <input type="text" class="form-control" id="firstName" th:field="*{firstName}" aria-describedby="firstName">
@@ -38,7 +38,13 @@
                         <label for="bio" class="form-label">Bio</label>
                         <input type="text" class="form-control" id="bio" th:field="*{bio}">
                     </div>
+
+                    <label for="file">Upload a file!</label>
+                    <input name="file" type="file" />
+
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <div id="submitWarning" class="form-text">Allow Time for Database to update</div>
+
                 </form>
             </div>
         </div>
@@ -192,12 +198,29 @@
         </h2>
         <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form action="/fileupload" method="POST" enctype="multipart/form-data">
+                <form th:action="@{/fileupload}" method="POST" enctype="multipart/form-data">
                     <label for="file">Upload a file!</label>
                     <input id="file" name="file" type="file" />
                     <br />
-                    <label for="barber">Input barber id</label>
+                    <label for="barber">Select a barber by id </label>
                     <input id="barber" name="barber" type="number">
+                    <input type="submit" value="upload"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                Upload Shop image
+            </button>
+        </h2>
+        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form th:action="@{/shopImageUpload}" method="POST" enctype="multipart/form-data">
+                    <label for="file">Upload a file!</label>
+                    <input name="file" type="file" />
+                    <br />
                     <input type="submit" value="upload"/>
                 </form>
             </div>
