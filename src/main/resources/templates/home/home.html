@@ -11,7 +11,7 @@
 <!--NAVBAR-->
     <nav th:replace="partials/navbar.html :: LoggedOutNavbar" style="opacity: 0.5"></nav>
 
-    <header class="shopImages px-4 pt-5" th:object="${shops}">
+    <header class="shopImages px-4 pt-2" th:object="${shops}">
         <img th:src="@{${'/images/' + shops.shopPhotoName}}" class="img-fluid shopBG">
 <!--&lt;!&ndash;Carousel of shop photos&ndash;&gt;-->
 <!--        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >-->
@@ -30,17 +30,16 @@
 <!--            </button>-->
 <!--        </div>-->
     </header>
-<!--Carousel of shop photos-->
 
-    <section class="px-4 mt-5 pt-5 d-flex flex-wrap justify-content-evenly barberList" id="barberList" >
+    <section class="px-4 mt-2 pt-2 d-flex flex-wrap justify-content-evenly barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
             <div class="card m-2" style="width: 18rem;">
                 <img th:src="@{${'/images/' + barber.photoName}}">
-                <div class="card-body">
+                <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>
                     <p th:text="${barber.bio}"></p>
-                    <a th:href="${'https://' + barber.link}" class="btn btn-primary">Book an appointment</a>
+                    <a th:href="${'https://' + barber.link}" class="btn appointmentBtn">Book an appointment</a>
                 </div>
             </div>
         </div>
@@ -52,7 +51,7 @@
         <div class="card mb-3" style="width: auto">
             <div class="row g-0">
                 <div class="col-md-4" th:object="${shops}">
-                    <img th:src="@{${'/images/' + shops.drinkPhotoName}}" class="img-fluid rounded-start p-3" alt="...">
+                    <img th:src="@{${'/images/' + shops.drinkPhotoName}}" class="img-fluid rounded-start p-3 drinkPhoto" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -120,7 +119,7 @@
         </div>
     </div>
 
-    <div class="container text-center m-2" id="shopInfo" style="font-family: Serif">
+    <div class="container text-center m-2" id="shopInfo" style="font-family: Serif; color: rgb(243,187,34)">
         <div class="row">
             <div class="col">
                 <h3>Shop Hours</h3>
@@ -155,11 +154,11 @@
                 <p th:text="${shops.shopTeleNum}"></p>
                 <p th:text="${shops.shopAddress}"></p>
                 <div style="font-size: 2rem;">
-                <a title="Instagram" th:href="${'https://' + shops.instagramLink}" role="button" class="p-1 m-2">
-                    <i class="fa-brands fa-instagram" style="color: goldenrod"></i>
+                <a title="Instagram" th:href="${'https://' + shops.instagramLink}" class="p-1 m-2" style="color: black">
+                    <i class="fa-brands fa-square-instagram " style="color: rgb(243,187,34)"></i>
                 </a>
                 <a title="Facebook" th:href="${'https://' + shops.facebookLink}" role="button" class="p-1 m-2">
-                <i class="fa-brands fa-square-facebook" style="color: goldenrod"></i>
+                <i class="fa-brands fa-square-facebook " style="color: rgb(243,187,34)"></i>
                 </a>
                 </div>
             </div>

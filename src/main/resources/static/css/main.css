@@ -5,11 +5,31 @@
 
 .body{
     background: black;
+    font-family: Serif;
 }
 
 #shopInfo{
-    color: rgb(255, 134, 10);
+    color: rgb(243,187,34);
 }
 
-.shopImages{}
+.shopBG{
+    width: 100%;
+    height: auto;
+}
+
+.nav{
+    position: fixed;
+    z-index:1;
+}
+
+.barberCard{
+    border: 1px solid rgb(243,187,34);
+    color: rgb(243,187,34);
+    background-color: black;
+}
+
+.appointmentBtn{
+    color: rgb(243,187,34);
+    border-color: rgb(243,187,34);
+}
 
