@@ -5,34 +5,30 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/main.css">
+    <script src="https://kit.fontawesome.com/448c6462fd.js" crossorigin="anonymous"></script>
 </head>
 <body class="body">
 <!--NAVBAR-->
     <nav th:replace="partials/navbar.html :: LoggedOutNavbar" style="opacity: 0.5"></nav>
 
-    <header>
-<!--Carousel of shop photos-->
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
-            <div class="carousel-inner" th:each="photo : ${photos}">
-                <div class="carousel-item active" >
-                    <img th:src="@{${'/images/' + photo.photoName}}" class="d-block w-100" alt="...">
-                </div>
-<!--                <div class="carousel-item">-->
-<!--                    <img src="/images/pexels-bella-white-635279.jpg" class="d-block w-100" alt="...">-->
+    <header class="shopImages px-4 pt-5" th:object="${shops}">
+        <img th:src="@{${'/images/' + shops.shopPhotoName}}" class="img-fluid shopBG">
+<!--&lt;!&ndash;Carousel of shop photos&ndash;&gt;-->
+<!--        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >-->
+<!--            <div class="carousel-inner h-50" th:object="${photos}">-->
+<!--                <div class="carousel-item active" >-->
+<!--                    <img th:src="@{${'/images/' + photos.photoName}}" th:if="${photos.}" class="d-block w-100 " alt="...">-->
 <!--                </div>-->
-<!--                <div class="carousel-item">-->
-<!--                    <img src="/images/pexels-cliford-mervil-2398220.jpg" class="d-block w-100" alt="...">-->
-<!--                </div>-->
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+<!--            </div>-->
+<!--            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">-->
+<!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                <span class="visually-hidden">Previous</span>-->
+<!--            </button>-->
+<!--            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">-->
+<!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                <span class="visually-hidden">Next</span>-->
+<!--            </button>-->
+<!--        </div>-->
     </header>
 <!--Carousel of shop photos-->
 
@@ -44,7 +40,7 @@
                 <div class="card-body">
                     <h5 th:text="${barber.firstName}"></h5>
                     <p th:text="${barber.bio}"></p>
-                    <a th:href="${'http://' + barber.link}" class="btn btn-primary">Book an appointment</a>
+                    <a th:href="${'https://' + barber.link}" class="btn btn-primary">Book an appointment</a>
                 </div>
             </div>
         </div>
@@ -157,6 +153,15 @@
             <div class="col" th:object="${shops}">
                 <h3>Contact info</h3>
                 <p th:text="${shops.shopTeleNum}"></p>
+                <p th:text="${shops.shopAddress}"></p>
+                <div style="font-size: 2rem;">
+                <a title="Instagram" th:href="${'https://' + shops.instagramLink}" role="button" class="p-1 m-2">
+                    <i class="fa-brands fa-instagram" style="color: goldenrod"></i>
+                </a>
+                <a title="Facebook" th:href="${'https://' + shops.facebookLink}" role="button" class="p-1 m-2">
+                <i class="fa-brands fa-square-facebook" style="color: goldenrod"></i>
+                </a>
+                </div>
             </div>
         </div>
     </div>

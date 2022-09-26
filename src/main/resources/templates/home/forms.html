@@ -129,6 +129,20 @@
                         <input type="text" class="form-control" id="shopNumber" th:field="*{shopTeleNum}" th:value="${shopTeleNum}" aria-describedby="shopNumber">
                     </div>
                     <div class="mb-3">
+                        <label for="shopAddress" class="form-label">Shop Address Number</label>
+                        <input type="text" class="form-control" id="shopAddress" th:field="*{shopAddress}" th:value="${shopAddress}" aria-describedby="shopAddress">
+                    </div>
+                    <div class="mb-3">
+                        <label for="instagramLink" class="form-label">Instagram Link</label>
+                        <input type="text" class="form-control" id="instagramLink" th:field="*{instagramLink}" th:value="${instagramLink}" aria-describedby="instagramLink">
+                        <div class="form-text">Enter link without "http://"</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="facebookLink" class="form-label">Facebook Link</label>
+                        <input type="text" class="form-control" id="facebookLink" th:field="*{facebookLink}" th:value="${facebookLink}" aria-describedby="facebookLink">
+                        <div class="form-text">Enter link without "http://"</div>
+                    </div>
+                    <div class="mb-3">
                         <label for="monOpen" class="form-label">Monday Open Time</label>
                         <input type="text" class="form-control" id="monOpen" th:field="*{monOpen}" th:value="${monOpen}" aria-describedby="monOpen">
                     </div>
@@ -219,6 +233,23 @@
             <div class="accordion-body">
                 <form th:action="@{/shopImageUpload}" method="POST" enctype="multipart/form-data">
                     <label for="file">Upload a file!</label>
+                    <input name="file" type="file" />
+                    <br />
+                    <input type="submit" value="upload"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingEight">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                Upload Drink image
+            </button>
+        </h2>
+        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form th:action="@{/shopDrinkUpload}" method="POST" enctype="multipart/form-data">
+                    <label for="file">Upload Drink Photo</label>
                     <input name="file" type="file" />
                     <br />
                     <input type="submit" value="upload"/>

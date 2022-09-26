@@ -36,7 +36,7 @@ public class FormsController {
     }
 
     @GetMapping("/Controls")
-    public String registerBarber(Model model){
+    public String showForms(Model model){
         model.addAttribute("barber", new Barber());
         model.addAttribute("barbers", barberDao.findAll());
         model.addAttribute("drink", new Drink());
@@ -90,6 +90,9 @@ public class FormsController {
         Shop findShop = shopDao.findById(1);
         findShop.setShopHeading(shop.getShopHeading());
         findShop.setShopDescription(shop.getShopDescription());
+        findShop.setShopAddress(shop.getShopAddress());
+        findShop.setFacebookLink(shop.getFacebookLink());
+        findShop.setInstagramLink(shop.getInstagramLink());
         findShop.setMonOpen(shop.getMonOpen());
         findShop.setMonClose(shop.getMonClose());
         findShop.setTueOpen(shop.getTueOpen());
@@ -145,13 +148,35 @@ public class FormsController {
             Photo photo = new Photo();
             photo.setPhotoName(filename);
             Shop shop = shopDao.getById(1);
+            shop.setShopPhotoName(filename);
             photo.setShop(shop);
             photoDao.save(photo);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        return "redirect:/";
+    }
+
+    @PostMapping("/shopDrinkUpload")
+    public String uploadDrinkImage(@RequestParam(name = "file") MultipartFile uploadedFile){
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            Photo photo = new Photo();
+            photo.setPhotoName(filename);
+            Shop shop = shopDao.getById(1);
+            shop.setDrinkPhotoName(filename);
+            photo.setShop(shop);
+            photoDao.save(photo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return "redirect:/";
     }
+
+
 }

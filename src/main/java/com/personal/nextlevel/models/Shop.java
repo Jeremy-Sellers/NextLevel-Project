@@ -16,6 +16,12 @@ public class Shop {
 
     private String shopTeleNum;
 
+    private String shopAddress;
+
+    private String instagramLink;
+
+    private String facebookLink;
+
     private String monOpen;
     private String monClose;
 
@@ -39,17 +45,21 @@ public class Shop {
 
     private String drinkPhotoName;
 
+    private String shopPhotoName;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     private List<Photo> photos;
 
     public Shop() {
     }
 
-    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName) {
+
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName,String instagramLink, String facebookLink ) {
         this.id = id;
         this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
         this.shopTeleNum = shopTeleNum;
+        this.shopAddress = shopAddress;
         this.monOpen = monOpen;
         this.monClose = monClose;
         this.tueOpen = tueOpen;
@@ -66,6 +76,9 @@ public class Shop {
         this.sunClose = sunClose;
         this.photos = photos;
         this.drinkPhotoName = drinkPhotoName;
+        this.shopPhotoName = shopPhotoName;
+        this.instagramLink = instagramLink;
+        this.facebookLink = facebookLink;
     }
 
     public long getId() {
@@ -98,6 +111,30 @@ public class Shop {
 
     public void setShopTeleNum(String shopTeleNum) {
         this.shopTeleNum = shopTeleNum;
+    }
+
+    public String getShopAddress() {
+        return shopAddress;
+    }
+
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
+    }
+
+    public String getInstagramLink() {
+        return instagramLink;
+    }
+
+    public void setInstagramLink(String instagramLink) {
+        this.instagramLink = instagramLink;
+    }
+
+    public String getFacebookLink() {
+        return facebookLink;
+    }
+
+    public void setFacebookLink(String facebookLink) {
+        this.facebookLink = facebookLink;
     }
 
     public String getMonOpen() {
@@ -218,6 +255,14 @@ public class Shop {
 
     public void setDrinkPhotoName(String drinkPhotoName) {
         this.drinkPhotoName = drinkPhotoName;
+    }
+
+    public String getShopPhotoName() {
+        return shopPhotoName;
+    }
+
+    public void setShopPhotoName(String shopPhotoName) {
+        this.shopPhotoName = shopPhotoName;
     }
 
     public List<Photo> getPhotos() {
