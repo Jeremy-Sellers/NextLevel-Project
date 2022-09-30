@@ -80,8 +80,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <img src="/images/pexels-kaique-rocha-114797.jpg" class="img-fluid rounded-start p-3" alt="...">
+                <div class="col-md-4" th:object="${shops}">
+                    <img th:src="@{${'/images/' + shops.shopDescriptionPhotoName}}" alt="..." class="img-fluid">
                 </div>
             </div>
         </div>

@@ -47,6 +47,8 @@ public class Shop {
 
     private String shopPhotoName;
 
+    private String shopDescriptionPhotoName;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     private List<Photo> photos;
 
@@ -54,7 +56,7 @@ public class Shop {
     }
 
 
-    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName,String instagramLink, String facebookLink ) {
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink ) {
         this.id = id;
         this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
@@ -77,6 +79,7 @@ public class Shop {
         this.photos = photos;
         this.drinkPhotoName = drinkPhotoName;
         this.shopPhotoName = shopPhotoName;
+        this.shopDescriptionPhotoName = shopDescriptionPhotoName;
         this.instagramLink = instagramLink;
         this.facebookLink = facebookLink;
     }
@@ -263,6 +266,14 @@ public class Shop {
 
     public void setShopPhotoName(String shopPhotoName) {
         this.shopPhotoName = shopPhotoName;
+    }
+
+    public String getShopDescriptionPhotoName() {
+        return shopDescriptionPhotoName;
+    }
+
+    public void setShopDescriptionPhotoName(String shopDescriptionPhotoName) {
+        this.shopDescriptionPhotoName = shopDescriptionPhotoName;
     }
 
     public List<Photo> getPhotos() {

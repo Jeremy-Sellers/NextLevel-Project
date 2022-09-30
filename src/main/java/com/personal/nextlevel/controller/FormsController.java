@@ -178,5 +178,25 @@ public class FormsController {
         return "redirect:/";
     }
 
+    @PostMapping("/shopDescriptionImageUpload")
+    public String uploadShopDescriptionImage(@RequestParam(name = "file") MultipartFile uploadedFile){
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            Photo photo = new Photo();
+            photo.setPhotoName(filename);
+            Shop shop = shopDao.getById(1);
+            shop.setShopDescriptionPhotoName(filename);
+            photo.setShop(shop);
+            photoDao.save(photo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/";
+    }
+
 
 }
