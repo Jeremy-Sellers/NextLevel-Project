@@ -21,6 +21,11 @@
     <li class="nav-item">
         <a class="nav-link" style="color:rgb(243,187,34);" href="#shopInfo">Info</a>
     </li>
+    <li>
+        <form th:action="@{/logout}" th:method="post">
+            <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+        </form>
+    </li>
 </ul>
 </nav>
 

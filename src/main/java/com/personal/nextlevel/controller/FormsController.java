@@ -8,6 +8,7 @@ import com.personal.nextlevel.repository.*;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class FormsController {
         this.photoDao = photoDao;
     }
 
-    @GetMapping("/Controls")
+    @RequestMapping("/Controls/{userid}")
     public String showForms(Model model){
         model.addAttribute("barber", new Barber());
         model.addAttribute("barbers", barberDao.findAll());
