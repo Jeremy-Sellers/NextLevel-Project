@@ -46,13 +46,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/home") // anyone can see the home and the about page
+                .antMatchers("/home","/Controls") // anyone can see the home and the about page
                 .permitAll()
                 /* Pages that require authentication */
-                .and()
-                .authorizeRequests()
-                .antMatchers("/controls")
-                .hasRole("Admin")
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers()
         ;
     }
 }

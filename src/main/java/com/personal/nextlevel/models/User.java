@@ -2,7 +2,6 @@ package com.personal.nextlevel.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -52,9 +51,9 @@ import java.util.Set;
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "role_id")
         )
-        private Set<Roles> roles = new HashSet<>();
+        private Set<Role> roles = new HashSet<>();
 
-        public void addRole(Roles role) {
+        public void addRole(Role role) {
             this.roles.add(role);
         }
 
@@ -133,11 +132,11 @@ import java.util.Set;
         }
 
 
-        public Set<Roles> getRoles() {
+        public Set<Role> getRoles() {
             return roles;
         }
 
-        public void setRoles(Set<Roles> roles) {
+        public void setRoles(Set<Role> roles) {
             this.roles = roles;
         }
 }

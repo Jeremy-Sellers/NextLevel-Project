@@ -1,6 +1,6 @@
 package com.personal.nextlevel.controller;
 
-import com.personal.nextlevel.models.Roles;
+import com.personal.nextlevel.models.Role;
 import com.personal.nextlevel.models.User;
 import com.personal.nextlevel.repository.RoleRepository;
 import com.personal.nextlevel.repository.UserRepository;
@@ -30,18 +30,18 @@ public class UserController {
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "admin") String adminPass){
         String AdminPassCheck = "NLB2020!$";
-        Roles roleAdmin = roleDao.findByName("Admin");
-        Roles roleUser = roleDao.findByName("User");
+//        Role roleAdmin = roleDao.findByName("Admin");
+//        Role roleUser = roleDao.findByName("User");
         if (adminPass.equals(AdminPassCheck)){
             user.setIsAdmin(true);
-            user.addRole(roleAdmin);
+//            user.addRole(roleAdmin);
         } else {
             user.setIsAdmin(false);
-            user.addRole(roleUser);
+//            user.addRole(roleUser);
         }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-        return "redirect:/login";
+        return "redirect:/";
     }
 }

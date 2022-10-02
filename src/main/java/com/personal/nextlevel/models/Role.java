@@ -7,27 +7,34 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-public class Roles {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, length = 45)
     private String name;
 
-    public Roles() { }
+    private String code;
 
-    public Roles(String name) {
+    public Role() { }
+
+    public Role(String name) {
         this.name = name;
     }
 
-    public Roles(Integer id, String name) {
+    public Role(Long id) {
+        this.id = id;
+    }
+
+    public Role(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Roles(Integer id) {
-        this.id = id;
+
+    public static Role admin(User user){
+        return new Role(user.getId(), "Admin");
     }
 
 
@@ -36,11 +43,11 @@ public class Roles {
         return this.name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,6 +1,6 @@
 package com.personal.nextlevel.repository;
 
-import com.personal.nextlevel.models.Roles;
+import com.personal.nextlevel.models.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -14,16 +14,19 @@ import java.util.List;
 @Rollback(false)
 public class RoleRepositoryTests {
 
-    @Autowired private RoleRepository repo;
+    @Autowired RoleRepository repo;
 
     @Test
     public void testCreateRoles() {
-        Roles user = new Roles("User");
-        Roles admin = new Roles("Admin");
+        Role user = new Role("User");
+        Role admin = new Role("Admin");
 
         repo.saveAll(List.of(user, admin));
 
-        List<Roles> listRoles = repo.findAll();
+        List<Role> listRoles = repo.findAll();
+
+        assert listRoles.contains(admin);
+        assert listRoles.contains(user);
 
     }
 }

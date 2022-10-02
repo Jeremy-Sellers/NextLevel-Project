@@ -1,8 +1,10 @@
 package com.personal.nextlevel.repository;
 
-import com.personal.nextlevel.models.Roles;
+import com.personal.nextlevel.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public interface RoleRepository extends JpaRepository<Roles, Long> {
-Roles findByName(String name);
+public interface RoleRepository extends JpaRepository<Role, Long> {
+    @Query("SELECT r FROM Role r WHERE r.name = ?1")
+    public Role findByName(String name);
 }

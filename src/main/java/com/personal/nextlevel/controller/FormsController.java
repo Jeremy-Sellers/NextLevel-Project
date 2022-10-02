@@ -36,7 +36,7 @@ public class FormsController {
         this.photoDao = photoDao;
     }
 
-    @RequestMapping("/Controls/{userid}")
+    @RequestMapping("/Controls")
     public String showForms(Model model){
         model.addAttribute("barber", new Barber());
         model.addAttribute("barbers", barberDao.findAll());
