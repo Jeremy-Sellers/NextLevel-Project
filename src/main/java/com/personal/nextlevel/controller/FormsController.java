@@ -7,8 +7,6 @@ import com.personal.nextlevel.models.Shop;
 import com.personal.nextlevel.repository.*;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 public class FormsController {
@@ -27,16 +23,18 @@ public class FormsController {
     private final ShopRepository shopDao;
     private final ReviewRepository reviewDao;
     private final PhotoRepository photoDao;
+    private final UserRepository userDao;
 
-    public FormsController(BarberRepository barberDao, DrinkRepository drinkDao, ShopRepository shopDao, ReviewRepository reviewDao, PhotoRepository photoDao) {
+    public FormsController(BarberRepository barberDao, DrinkRepository drinkDao, ShopRepository shopDao, ReviewRepository reviewDao, PhotoRepository photoDao, UserRepository userDao) {
         this.barberDao = barberDao;
         this.drinkDao = drinkDao;
         this.shopDao = shopDao;
         this.reviewDao = reviewDao;
         this.photoDao = photoDao;
+        this.userDao = userDao;
     }
 
-    @RequestMapping("/Controls")
+    @GetMapping("/Controls")
     public String showForms(Model model){
         model.addAttribute("barber", new Barber());
         model.addAttribute("barbers", barberDao.findAll());
@@ -44,6 +42,7 @@ public class FormsController {
         model.addAttribute("drinks", drinkDao.findAll());
         model.addAttribute("shop", shopDao.findById(1));
         model.addAttribute("photo", photoDao.findAll());
+        model.addAttribute("users",userDao.findAll());
         return "home/forms";
     }
 

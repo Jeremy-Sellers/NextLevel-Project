@@ -56,7 +56,7 @@ public class UserRepositoryTests {
     @Test
     public void testAddRoleToExistingUser(){
         User existingUser = repo.findById(1L).get();
-        Role roleAdmin = roleRepo.findByName("Admin");
+        Role roleAdmin = roleRepo.findByName("ADMIN");
 
         existingUser.addRole(roleAdmin);
     }

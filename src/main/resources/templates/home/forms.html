@@ -282,6 +282,12 @@
             <p>Name: <span th:text="${barbers.firstName}"></span>, <span th:text="${barbers.lastName}"></span> id: <span th:text="${barbers.id}"></span> </p>
         </li>
     </ul>
+
+    <ul th:each="users : ${users}">
+        <li>
+            <p>UserName: <span th:text="${users.username}"></span>,Role: <span th:text="${users.roles}"></span> </p>
+        </li>
+    </ul>
 </div>
 
 </body>
