@@ -26,6 +26,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN")
+//                .and()
+//                .withUser("user").password(passwordEncoder().encode("user123")).roles("USER");
+
+//        Code above allows for user and admin profiles to work with security config, attempting to get working on db profiles
+
         auth
                 .userDetailsService(usersLoader) // How to find users by their username
                 .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
