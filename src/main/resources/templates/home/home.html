@@ -9,9 +9,9 @@
 </head>
 <body class="body">
 <!--NAVBAR-->
-    <nav th:replace="partials/navbar.html :: LoggedOutNavbar" style="opacity: 0.5"></nav>
+    <nav th:replace="partials/navbar.html :: LoggedOutNavbar" style="opacity: 0.5" class="nav justify-content-center"></nav>
 
-    <header class="shopImages px-4 pt-2" th:object="${shops}">
+    <header class="shopImages " th:object="${shops}">
         <img th:src="@{${'/images/' + shops.shopPhotoName}}" class="img-fluid shopBG">
 <!--&lt;!&ndash;Carousel of shop photos&ndash;&gt;-->
 <!--        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >-->
@@ -31,7 +31,7 @@
 <!--        </div>-->
     </header>
 
-    <section class="px-4 mt-2 pt-2 d-flex flex-wrap justify-content-evenly barberList" id="barberList" >
+    <section class="px-4 mt-2 pt-2 d-flex flex-wrap justify-content-around barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
             <div class="card m-2" style="width: 18rem;">
@@ -46,9 +46,9 @@
 
     </section>
 
-    <section class="drinkMenu px-3">
+    <section class="drinkMenu pt-2">
 
-        <div class="card mb-3" style="width: auto">
+        <div class="card" style="width: auto">
             <div class="row g-0">
                 <div class="col-md-4" th:object="${shops}">
                     <img th:src="@{${'/images/' + shops.drinkPhotoName}}" class="img-fluid rounded-start p-3 drinkPhoto" alt="...">
@@ -66,7 +66,7 @@
 
     </section>
 
-    <section class="shopDescription px-3" id="shopDescription">
+    <section class="shopDescription" id="shopDescription">
 
         <div class="card mb-3" style="width: auto">
             <div class="row g-0">
@@ -119,7 +119,7 @@
         </div>
     </div>
 
-    <div class="container text-center m-2" id="shopInfo" style="font-family: Serif; color: rgb(243,187,34)">
+    <div class="infoContainer  text-center m-2" id="shopInfo" style="color: rgb(243,187,34)">
         <div class="row">
             <div class="col">
                 <h3>Shop Hours</h3>

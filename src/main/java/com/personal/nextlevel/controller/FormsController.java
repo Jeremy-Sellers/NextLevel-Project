@@ -1,9 +1,6 @@
 package com.personal.nextlevel.controller;
 
-import com.personal.nextlevel.models.Barber;
-import com.personal.nextlevel.models.Drink;
-import com.personal.nextlevel.models.Photo;
-import com.personal.nextlevel.models.Shop;
+import com.personal.nextlevel.models.*;
 import com.personal.nextlevel.repository.*;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -43,6 +40,7 @@ public class FormsController {
         model.addAttribute("shop", shopDao.findById(1));
         model.addAttribute("photo", photoDao.findAll());
         model.addAttribute("users",userDao.findAll());
+        model.addAttribute("review", new Review());
         return "home/forms";
     }
 
@@ -67,6 +65,12 @@ public class FormsController {
 
     }
 
+    @PostMapping("/Controls/addReview")
+    public String addReview(@ModelAttribute Review review){
+        reviewDao.save(review);
+        return "redirect:/";
+    }
+
     @PostMapping("/Controls/Delete")
     public String deleteBarber(@RequestParam(name = "deleteBarber") long id){
         barberDao.deleteById(id);
@@ -84,6 +88,7 @@ public class FormsController {
         drinkDao.deleteById(id);
         return "redirect:/";
     }
+
 
     @PostMapping("/Controls/{id}")
     public String editInfo(@ModelAttribute Shop shop){

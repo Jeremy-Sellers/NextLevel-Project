@@ -33,3 +33,12 @@
     border-color: rgb(243,187,34);
 }
 
+.navbar{
+    padding: 1em;
+}
+
+.infoContainer{
+    display: flex;
+    justify-content: center;
+}
+
