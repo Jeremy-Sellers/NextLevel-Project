@@ -1,22 +1,28 @@
 package com.personal.nextlevel;
 
 import com.personal.nextlevel.services.UserDetailsLoader;
+import com.personal.nextlevel.services.UserPrincipalDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private UserPrincipalDetailsService userPrincipalDetailsService;
     private UserDetailsLoader usersLoader;
 
-    public SecurityConfiguration(UserDetailsLoader usersLoader) {
+
+    public SecurityConfiguration(UserDetailsLoader usersLoader,UserPrincipalDetailsService userPrincipalDetailsService) {
         this.usersLoader = usersLoader;
+        this.userPrincipalDetailsService = userPrincipalDetailsService;
     }
 
     @Bean
@@ -25,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth){
 //        auth.inMemoryAuthentication()
 //                .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN")
 //                .and()
@@ -33,9 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 //        Code above allows for user and admin profiles to work with security config, attempting to get working on db profiles
 
-        auth
-                .userDetailsService(usersLoader) // How to find users by their username
-                .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
+        auth.authenticationProvider(authenticationProvider());
         ;
     }
 
@@ -45,6 +49,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/Controls").hasRole("ADMIN")
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/");
+    }
+
+
+
+    @Bean
+    DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
+
+        return daoAuthenticationProvider;
     }
 }
 

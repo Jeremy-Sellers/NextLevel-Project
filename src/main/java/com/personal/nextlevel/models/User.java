@@ -1,8 +1,7 @@
 package com.personal.nextlevel.models;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
     @Table(name = "users")
@@ -42,20 +41,9 @@ import java.util.Set;
         @Column(name="PASSWORD", nullable = false, length = 100)
         private String password;
 
-        @Column(name = "ADMIN")
-        private boolean isAdmin;
+        private String roles = "";
 
-        @ManyToMany(fetch = FetchType.EAGER)
-        @JoinTable(
-                name = "users_roles",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id")
-        )
-        private Set<Role> roles = new HashSet<>();
-
-        public void addRole(Role role) {
-            this.roles.add(role);
-        }
+        private String permissions = "";
 
 //----- Constructor Empty
 
@@ -63,14 +51,15 @@ import java.util.Set;
         }
 
         //----- Constructor
-        public User(long id, String firstName, String lastName, String email, String username, String password, boolean isAdmin) {
+        public User(long id, String firstName, String lastName, String email, String username, String password, String roles, String permissions) {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
             this.username = username;
             this.password = password;
-            this.isAdmin = isAdmin;
+            this.roles = roles;
+            this.permissions = permissions;
         }
 
 
@@ -123,20 +112,33 @@ import java.util.Set;
             this.password = password;
         }
 
-        public boolean getIsAdmin() {
-            return isAdmin;
-        }
+    public String getRoles() {
+        return roles;
+    }
 
-        public void setIsAdmin(boolean admin) {
-            this.isAdmin = admin;
-        }
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 
+    public String getPermissions() {
+        return permissions;
+    }
 
-        public Set<Role> getRoles() {
-            return roles;
-        }
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
 
-        public void setRoles(Set<Role> roles) {
-            this.roles = roles;
+    public List<String> getRoleList(){
+            if (this.roles.length() > 0){
+                return Arrays.asList(this.roles.split(","));
+            }
+            return new ArrayList<>();
+    }
+
+    public List<String> getPermissionList(){
+        if (this.permissions.length() > 0){
+            return Arrays.asList(this.permissions.split(","));
         }
+        return new ArrayList<>();
+    }
 }

@@ -31,7 +31,6 @@ public class UserRepositoryTests {
         user.setLastName("Doe");
         user.setEmail("test@test.com");
         user.setUsername("Jdizzle");
-        user.setIsAdmin(true);
         user.setPassword("Password1");
 
 //        User existingUser = entityManager.find(User.class, savedUser.getId());
@@ -44,11 +43,9 @@ public class UserRepositoryTests {
         user.setLastName("Doe");
         user.setEmail("Jane@test.com");
         user.setUsername("Jdazzle");
-        user.setIsAdmin(true);
         user.setPassword("Password1");
 
         Role roleUser = roleRepo.findByName("User");
-        user.addRole(roleUser);
 
         User savedUser = repo.save(user);
     }
@@ -57,7 +54,5 @@ public class UserRepositoryTests {
     public void testAddRoleToExistingUser(){
         User existingUser = repo.findById(1L).get();
         Role roleAdmin = roleRepo.findByName("ADMIN");
-
-        existingUser.addRole(roleAdmin);
     }
 }

@@ -30,14 +30,12 @@ public class UserController {
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "admin") String adminPass){
         String AdminPassCheck = "NLB2020!$";
-//        Role roleAdmin = roleDao.findByName("Admin");
-//        Role roleUser = roleDao.findByName("User");
+//        Role roleAdmin = roleDao.findByName("ADMIN");
+//        Role roleUser = roleDao.findByName("USER");
         if (adminPass.equals(AdminPassCheck)){
-            user.setIsAdmin(true);
-//            user.addRole(roleAdmin);
+            user.setRoles("ADMIN");
         } else {
-            user.setIsAdmin(false);
-//            user.addRole(roleUser);
+            user.setRoles("USER");
         }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);

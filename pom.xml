@@ -42,7 +42,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-            <!-- ... -->
+            <!-- Security -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
@@ -52,7 +52,7 @@
                 <artifactId>thymeleaf-extras-springsecurity5</artifactId>
                 <version>3.0.4.RELEASE</version>
             </dependency>
-            <!-- ... -->
+            <!-- Security -->
     </dependencies>
 
     <build>
