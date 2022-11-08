@@ -41,6 +41,7 @@ public class FormsController {
         model.addAttribute("photo", photoDao.findAll());
         model.addAttribute("users",userDao.findAll());
         model.addAttribute("review", new Review());
+        model.addAttribute("reviews",reviewDao.findAll());
         return "home/forms";
     }
 
@@ -89,6 +90,23 @@ public class FormsController {
         return "redirect:/";
     }
 
+    @PostMapping("/Controls/DeleteReview")
+    public String deleteReview(@RequestParam(name = "deleteReview") long id){
+        reviewDao.deleteById(id);
+        return "redirect:/";
+    }
+
+
+    @PostMapping("/Controls/EditBarber")
+    public String editBarberInfo(@ModelAttribute Barber barber, @RequestParam(name = "barberId") long id){
+        Barber findBarber = barberDao.getById(id);
+        findBarber.setBio(barber.getBio());
+        findBarber.setFirstName(barber.getFirstName());
+        findBarber.setLink(barber.getLink());
+
+        barberDao.save(findBarber);
+        return "redirect:/";
+    }
 
     @PostMapping("/Controls/{id}")
     public String editInfo(@ModelAttribute Shop shop){
