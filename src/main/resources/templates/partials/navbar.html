@@ -8,44 +8,49 @@
 </head>
 <body>
 
-<!--<nav th:fragment="LoggedOutNavbar" class="navbar bg-black">-->
-<!--    <div class="container-fluid">-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" style="color:rgb(243,187,34);" aria-current="page" href="#reviews">Reviews</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" style="color:rgb(243,187,34);" href="#barberList">Barbers</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" style="color:rgb(243,187,34);" href="#shopDescription">The Shop</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" style="color:rgb(243,187,34);" href="#shopInfo">Info</a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--            <form th:action="@{/logout}" th:method="post">-->
-<!--                <button class="btn-link btn" style="color:rgb(243,187,34);">Logout</button>-->
-<!--            </form>-->
-<!--        </li>-->
-<!--    </div>-->
-<!--</nav>-->
-
-
-<nav class="navbar navbar-expand-lg bg-black" th:fragment="LoggedOutNavbar">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: black" th:fragment="LoggedOutNavbar">
     <div class="container-fluid">
-        <div class="collapse navbar-collapse justify-content-evenly" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" style="color:rgb(243,187,34);" aria-current="page" href="#reviews">Reviews</a>
-                <a class="nav-link" style="color:rgb(243,187,34);" href="#barberList">Barbers</a>
-                <a class="nav-link" style="color:rgb(243,187,34);" href="#shopDescription">The Shop</a>
-                <a class="nav-link" style="color:rgb(243,187,34);" href="#shopInfo">Info</a>
+        <a class="navbar-brand" href="/">Next Level</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#barberList">Barbers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#shopDescription">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#shopInfo">Info</a>
+                </li>
                 <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn" style="color:rgb(243,187,34);">Logout</button>
+                    <button class="btn-link btn logoutBtn">Logout</button>
                 </form>
-            </div>
+            </ul>
         </div>
     </div>
 </nav>
+
+<!--<nav class="navbar navbar-expand-lg bg-black" th:fragment="LoggedOutNavbar">-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="collapse navbar-collapse justify-content-evenly" id="navbarNavAltMarkup">-->
+<!--            <div class="navbar-nav">-->
+<!--                <a class="nav-link" style="color:rgb(243,187,34);" aria-current="page" href="#reviews">Reviews</a>-->
+<!--                <a class="nav-link" style="color:rgb(243,187,34);" href="#barberList">Barbers</a>-->
+<!--                <a class="nav-link" style="color:rgb(243,187,34);" href="#shopDescription">The Shop</a>-->
+<!--                <a class="nav-link" style="color:rgb(243,187,34);" href="#shopInfo">Info</a>-->
+<!--                <form th:action="@{/logout}" th:method="post">-->
+<!--                    <button class="btn-link btn" style="color:rgb(243,187,34);">Logout</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
 </body>
 </html>

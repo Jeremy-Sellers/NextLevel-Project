@@ -13,28 +13,12 @@
 
     <header class="shopImages " th:object="${shops}">
         <img th:src="@{${'/images/' + shops.shopPhotoName}}" class="img-fluid shopBG">
-<!--&lt;!&ndash;Carousel of shop photos&ndash;&gt;-->
-<!--        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >-->
-<!--            <div class="carousel-inner h-50" th:object="${photos}">-->
-<!--                <div class="carousel-item active" >-->
-<!--                    <img th:src="@{${'/images/' + photos.photoName}}" th:if="${photos.}" class="d-block w-100 " alt="...">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">-->
-<!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--                <span class="visually-hidden">Previous</span>-->
-<!--            </button>-->
-<!--            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">-->
-<!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--                <span class="visually-hidden">Next</span>-->
-<!--            </button>-->
-<!--        </div>-->
     </header>
 
-    <section class="px-4 mt-2 pt-2 d-flex flex-wrap justify-content-around barberList" id="barberList" >
+    <section class="px-4 mt-2 pt-2 barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
-            <div class="card m-2" style="width: 18rem;">
+            <div class="card m-2 barberParentCard" style="width: 18rem;">
                 <img th:src="@{${'/images/' + barber.photoName}}">
                 <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>
@@ -46,25 +30,19 @@
 
     </section>
 
-    <section class="drinkMenu pt-2">
-
-        <div class="card" style="width: auto">
-            <div class="row g-0">
-                <div class="col-md-4" th:object="${shops}">
-                    <img th:src="@{${'/images/' + shops.drinkPhotoName}}" class="img-fluid rounded-start p-3 drinkPhoto" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Complimentary drinks</h5>
-                        <ul th:each="drink : ${drinks}">
-                            <li th:text="${drink.drinkName}"></li>
-                        </ul>
-                    </div>
+    <div class="card text-bg-">
+        <div th:object="${shops}">
+            <img th:src="@{${'/images/' + shops.drinkPhotoName}}" class="drinkImage">
+            <div class="card-img-overlay">
+                <div class="card-body">
+                    <h5 class="card-title">Complimentary drinks</h5>
+                    <ul th:each="drink : ${drinks}">
+                        <li th:text="${drink.drinkName}"></li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-    </section>
+    </div>
 
     <section class="shopDescription" id="shopDescription">
 
