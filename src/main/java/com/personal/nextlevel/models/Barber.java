@@ -21,7 +21,7 @@ public class Barber {
     @Column(length = 100)
     private String email;
 
-    @Column(length = 250)
+    @Column(length = 500)
     private String bio;
 
     @Column()

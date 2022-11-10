@@ -18,7 +18,7 @@
     <section class="px-4 mt-2 pt-2 barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
-            <div class="card m-2 barberParentCard" style="width: 18rem;">
+            <div class="card m-2 barberParentCard" style="width: 20rem;">
                 <img th:src="@{${'/images/' + barber.photoName}}">
                 <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>
@@ -29,44 +29,39 @@
         </div>
 
     </section>
+<!--    <div class="drinkCardContainer">-->
 
-    <div class="card text-bg-">
-        <div th:object="${shops}">
-            <img th:src="@{${'/images/' + shops.drinkPhotoName}}" class="drinkImage">
-            <div class="card-img-overlay">
-                <div class="card-body">
-                    <h5 class="card-title">Complimentary drinks</h5>
-                    <ul th:each="drink : ${drinks}">
-                        <li th:text="${drink.drinkName}"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--        <div class="card drinkTextContainer" style="width: 18rem;">-->
+<!--            <div class="card-body drinkTextCard">-->
+<!--                <h3 class="card-title drinkTitle">Complimentary drinks</h3>-->
+<!--                <p>Appointments as well as walk ins are welcome, and while you're here enjoy from our list of complimentary drinks!</p>-->
+<!--                <ul th:each="drink : ${drinks}">-->
+<!--                    <li class="drinkList" th:text="${drink.drinkName}"></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
 
-    <section class="shopDescription" id="shopDescription">
+<!--    </div>-->
 
-        <div class="card mb-3" style="width: auto">
-            <div class="row g-0">
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <div class="card text-center" style="width: auto;" th:each="shop : ${shops}">
-                            <div class="card-body">
-                                <h5 class="card-title text-center" th:text="${shop.shopHeading}"></h5>
-                                <p class="card-text" th:text="${shop.shopDescription}"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" th:object="${shops}">
-                    <img th:src="@{${'/images/' + shops.shopDescriptionPhotoName}}" alt="..." class="img-fluid">
-                </div>
+
+    <section id="shopDescription">
+
+
+        <div class="card text-center shopDescription" style="width: auto;" th:each="shop : ${shops}">
+            <div class="card-body">
+                <h2 class="card-title text-center" th:text="${shop.shopHeading}"></h2>
+                <p class="card-text px-3 mx-5" th:text="${shop.shopDescription}"></p>
             </div>
         </div>
 
+<!--        <div class="col-md-4" th:object="${shops}">-->
+<!--            <img th:src="@{${'/images/' + shops.shopDescriptionPhotoName}}" alt="..." class="img-fluid">-->
+<!--        </div>-->
+
+        <section class="drinkPhotoContainer"></section>
     </section>
 
-    <div class="reviewsCarousel px-3 d-flex min justify-content-center" id="reviews">
+    <div class="reviewsCarousel p-3 d-flex min justify-content-center" id="reviews">
 
         <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -97,37 +92,34 @@
         </div>
     </div>
 
-    <div class="infoContainer  text-center m-2" id="shopInfo" style="color: rgb(243,187,34)">
+    <div class="infoContainer  text-center m-2" id="shopInfo">
         <div class="row">
-            <div class="col">
+            <div>
                 <h3>Shop Hours</h3>
                 <div th:object="${shops}">
-                    <p>Monday: <span th:text="${shops.monOpen}"></span> - <span th:text="${shops.monClose}"></span> </p>
+                    <h4>Monday: <span th:text="${shops.monOpen}"></span> - <span th:text="${shops.monClose}"></span> </h4>
                 </div>
                 <div th:object="${shops}">
-                    <p>Tuesday: <span th:text="${shops.tueOpen}"></span> - <span th:text="${shops.tueClose}"></span> </p>
+                    <h4>Tuesday: <span th:text="${shops.tueOpen}"></span> - <span th:text="${shops.tueClose}"></span> </h4>
                 </div>
                 <div th:object="${shops}">
-                    <p>Wednesday: <span th:text="${shops.wedOpen}"></span> - <span th:text="${shops.wedClose}"></span> </p>
+                    <h4>Wednesday: <span th:text="${shops.wedOpen}"></span> - <span th:text="${shops.wedClose}"></span> </h4>
                 </div>
                 <div th:object="${shops}">
-                    <p>Thursday: <span th:text="${shops.thuOpen}"></span> - <span th:text="${shops.thuClose}"></span> </p>
+                    <h4>Thursday: <span th:text="${shops.thuOpen}"></span> - <span th:text="${shops.thuClose}"></span> </h4>
                 </div>
                 <div th:object="${shops}">
-                    <p>Friday: <span th:text="${shops.friOpen}"></span> - <span th:text="${shops.friClose}"></span> </p>
+                    <h4>Friday: <span th:text="${shops.friOpen}"></span> - <span th:text="${shops.friClose}"></span> </h4>
                 </div>
                 <div th:object="${shops}">
-                    <p>Saturday: <span th:text="${shops.satOpen}"></span> - <span th:text="${shops.satClose}"></span> </p>
+                    <h4>Saturday: <span th:text="${shops.satOpen}"></span> - <span th:text="${shops.satClose}"></span> </h4>
                 </div>
                 <div th:object="${shops}">
-                    <p>Sunday: <span th:text="${shops.sunOpen}"></span> - <span th:text="${shops.sunClose}"></span> </p>
+                    <h4>Sunday: <span th:text="${shops.sunOpen}"></span> - <span th:text="${shops.sunClose}"></span> </h4>
                 </div>
             </div>
-            <div class="col">
-                <img src="/images/pexels-kaique-rocha-114797.jpg" class="img-fluid rounded-start p-3" alt="...">
 
-            </div>
-            <div class="col" th:object="${shops}">
+            <div th:object="${shops}">
                 <h3>Contact info</h3>
                 <p th:text="${shops.shopTeleNum}"></p>
                 <p th:text="${shops.shopAddress}"></p>

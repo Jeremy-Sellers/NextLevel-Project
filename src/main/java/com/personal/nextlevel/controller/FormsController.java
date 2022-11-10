@@ -96,6 +96,12 @@ public class FormsController {
         return "redirect:/";
     }
 
+    @PostMapping("/Controls/DeleteUser")
+    public String deleteUser(@RequestParam(name = "deleteUser") long id){
+        userDao.deleteById(id);
+        return "redirect:/";
+    }
+
 
     @PostMapping("/Controls/EditBarber")
     public String editBarberInfo(@ModelAttribute Barber barber, @RequestParam(name = "barberId") long id){

@@ -4,12 +4,12 @@
 }
 
 .body{
-    background: black;
+    background-color: black;
     font-family: Serif;
 }
 
 #shopInfo{
-    color: rgb(243,187,34);
+    color: white;
 }
 
 .shopBG{
@@ -23,8 +23,7 @@
 }
 
 .barberCard{
-    border: 1px solid rgb(243,187,34);
-    color: rgb(243,187,34);
+    color: white;
     background-color: black;
 }
 
@@ -33,15 +32,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("../images/brickWall.jpeg");
+    background-color: black;
     background-size: cover;
     background-position: center;
 }
 
 
 .appointmentBtn{
-    color: rgb(243,187,34);
-    border-color: rgb(243,187,34);
+    color: white;
+    border-color: white;
+}
+
+.appointmentBtn:hover{
+    color: black;
+    background-color: white;
+}
+
+.appointmentBtn:active{
+    color: white;
+    background-color: black;
 }
 
 .navbar{
@@ -51,37 +60,6 @@
 .infoContainer{
     display: flex;
     justify-content: center;
-}
-
-.loginCard{
-    color: white;
-    font-family: Serif, serif;
-    background: transparent;
-}
-
-.signupCard{
-    color: white;
-    font-family: Serif, serif;
-    background: transparent;
-}
-
-.loginForm{
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loginBody{
-    background-image:url("../images/NextLevelRoom.jpeg");
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .signupBody{
@@ -96,19 +74,30 @@
     align-items: center;
 }
 
-.shopBG{
+.signupCard{
+    color: white;
+    font-family: Serif, serif;
+    background: transparent;
+}
+
+.loginBody{
+    background-image:url("../images/NextLevelRoom.jpeg");
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.formsBody{
-    width: 100%;
+.loginForm{
     height: 100%;
-    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 
 .loginCardParent{
     background: transparent;
@@ -122,6 +111,72 @@
     height: 100%;
     background: rgba(0,0,0,.5);
     z-index: -1;
+}
+
+.loginCard{
+    color: white;
+    font-family: Serif, serif;
+    background: transparent;
+}
+
+.drinkPhotoContainer{
+    background-image: url("../images/NextLevelDrink.jpeg");
+    width: 100%;
+    height: 30vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+
+}
+
+
+.drinkCardContainer{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.drinkTextContainer{
+    background: transparent;
+    border-color: transparent;
+}
+
+.drinkTextContainer:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}
+
+.drinkTextCard{
+    color: white;
+    font-family: Serif, serif;
+    background: transparent;
+    z-index: 1;
+}
+
+.drinkTextCard h3{
+    text-align: center;
+}
+
+.shopBG{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.formsBody{
+    width: 100%;
+    height: 100%;
+    background-color: black;
 }
 
 .loginButton{
@@ -151,7 +206,8 @@
 
 .logoutBtn{
     color:rgb(243,187,34);
-    text-underline: none;
+    position: relative;
+    top: .4em;
 }
 
 .logoutBtn:hover{
@@ -177,4 +233,13 @@
 
 .navbar-expand-lg .navbar-toggler{
     border: 1px solid rgb(243,187,34);
+}
+
+.drinkList{
+    list-style: square;
+}
+
+.shopDescription{
+    background-color: black;
+    color: whitesmoke;
 }

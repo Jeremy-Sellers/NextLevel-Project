@@ -12,6 +12,7 @@ public class Shop {
 
     private String shopHeading;
 
+    @Column(length = 2500)
     private String shopDescription;
 
     private String shopTeleNum;

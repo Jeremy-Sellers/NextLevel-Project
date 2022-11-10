@@ -9,7 +9,9 @@
 <body class="loginBody">
 
 <form th:action="@{/login}" method="post" class="loginForm">
+
     <div class="card loginCardParent" style="width: 18rem;">
+
         <div class="card-body loginCard">
             <!--Error Message -->
             <h3 th:if="${param.error}" class="d-flex justify-content-center text-danger">
@@ -29,7 +31,9 @@
             </div>
             <button type="submit" value="Log In" class="btn btn-primary loginButton">Submit</button>
         </div>
+
     </div>
+
 </form>
 
 </body>

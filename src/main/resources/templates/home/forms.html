@@ -349,6 +349,26 @@
             </div>
         </div>
     </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThirteen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                Delete User
+            </button>
+        </h2>
+        <div id="collapseThirteen" class="accordion-collapse collapse" aria-labelledby="headingThirteen" data-bs-parent="#accordionExample">
+            <div class="accordion-body" th:each="users : ${users}">
+                <div class="card-body">
+                    <p>User: <span th:text="${users.lastName}"></span>, <span th:text="${users.firstName}"></span> Username: <span th:text="${users.username}"></span> </p>
+                </div>
+                <form class="deleteForm" th:method="post" th:action="@{/Controls/DeleteUser}">
+                    <input type="hidden" th:value="${users.id}" name="deleteUser">
+                    <button class="btn btn-primary px-3 mx-auto border-0">
+                        Delete User
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div>
