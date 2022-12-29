@@ -40,12 +40,44 @@
                         <input type="text" class="form-control" id="bio" th:field="*{bio}">
                     </div>
 
-                    <label for="file">Upload a file!</label>
+                    <label for="file"></label>
                     <input name="file" type="file" />
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary m-2">Submit</button>
                     <div id="submitWarning" class="form-text">Allow Time for Database to update</div>
 
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingEleven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                Edit Barber info
+            </button>
+        </h2>
+        <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form th:action="@{/Controls/EditBarber}" method="post" th:object="${barber}">
+                    <div id="linkHelp" class="form-text">For any fields not being changed, enter values from list below</div>
+                    <div class="mb-3">
+                        <label for="barberId" class="form-label">Id number of Barber to edit</label>
+                        <input type="number" min="1" class="form-control" id="barberId" name="barberId" aria-describedby="barberId">
+                    </div>
+                    <div class="mb-3">
+                        <label for="barberName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="barberName" th:field="*{firstName}" th:value="${$firstName}" aria-describedby="reviewBody">
+                    </div>
+                    <div class="mb-3">
+                        <label for="barberBio" class="form-label">Barber Bio</label>
+                        <input type="text" class="form-control" id="barberBio" th:field="*{bio}" th:value="${bio}" aria-describedby="reviewBody">
+                    </div>
+                    <div class="mb-3">
+                        <label for="barberLink" class="form-label">Barber Link</label>
+                        <input type="text" class="form-control" id="barberLink" th:field="*{link}" th:value="${link}" aria-describedby="reviewBody">
+                        <div id="linkHelp" class="form-text">Enter link without "http://"</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
@@ -70,44 +102,44 @@
             </div>
         </div>
     </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Add New Drink
-            </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <form th:action="@{/Controls/NewDrink}" method="post" th:object="${drink}">
-                    <div class="mb-3">
-                        <label for="newDrink" class="form-label">New Drink</label>
-                        <input type="text" class="form-control" id="newDrink" th:field="*{drinkName}" aria-describedby="drinkName">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                Delete Drink
-            </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-            <div class="accordion-body" th:each="drinks : ${drinks}">
-                <div class="card-body">
-                    <p>Drink: <span th:text="${drinks.drinkName}"></span> </p>
-                </div>
-                <form class="deleteForm" th:method="post" th:action="@{/Controls/DeleteDrink}">
-                    <input type="hidden" th:value="${drinks.id}" name="deleteDrink">
-                    <button class="btn btn-primary px-3 mx-auto border-0">
-                        Delete Drink
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+<!--    <div class="accordion-item">-->
+<!--        <h2 class="accordion-header" id="headingThree">-->
+<!--            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">-->
+<!--                Add New Drink-->
+<!--            </button>-->
+<!--        </h2>-->
+<!--        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">-->
+<!--            <div class="accordion-body">-->
+<!--                <form th:action="@{/Controls/NewDrink}" method="post" th:object="${drink}">-->
+<!--                    <div class="mb-3">-->
+<!--                        <label for="newDrink" class="form-label">New Drink</label>-->
+<!--                        <input type="text" class="form-control" id="newDrink" th:field="*{drinkName}" aria-describedby="drinkName">-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="accordion-item">-->
+<!--        <h2 class="accordion-header" id="headingFour">-->
+<!--            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">-->
+<!--                Delete Drink-->
+<!--            </button>-->
+<!--        </h2>-->
+<!--        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">-->
+<!--            <div class="accordion-body" th:each="drinks : ${drinks}">-->
+<!--                <div class="card-body">-->
+<!--                    <p>Drink: <span th:text="${drinks.drinkName}"></span> </p>-->
+<!--                </div>-->
+<!--                <form class="deleteForm" th:method="post" th:action="@{/Controls/DeleteDrink}">-->
+<!--                    <input type="hidden" th:value="${drinks.id}" name="deleteDrink">-->
+<!--                    <button class="btn btn-primary px-3 mx-auto border-0">-->
+<!--                        Delete Drink-->
+<!--                    </button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingFive">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -208,18 +240,18 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingSix">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                Upload File Image
+                Replace Barber photo
             </button>
         </h2>
         <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <form th:action="@{/fileupload}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Upload a file!</label>
+                    <label for="file">Photo will replace photo shown for barber chosen</label>
                     <input id="file" name="file" type="file" />
                     <br />
                     <label for="barber">Select a barber by id </label>
-                    <input id="barber" name="barber" type="number">
-                    <input type="submit" value="upload"/>
+                    <input id="barber" name="barber" type="number" min="1">
+                    <input type="submit" value="upload" class="m-2"/>
                 </form>
             </div>
         </div>
@@ -233,10 +265,10 @@
         <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <form th:action="@{/shopImageUpload}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Upload a file!</label>
+                    <label for="file">Chosen photo will replace photo at top of homepage</label>
                     <input name="file" type="file" />
                     <br />
-                    <input type="submit" value="upload"/>
+                    <input type="submit" value="upload" class="m-2"/>
                 </form>
             </div>
         </div>
@@ -250,31 +282,31 @@
         <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <form th:action="@{/shopDrinkUpload}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Upload Drink Photo</label>
+                    <label for="file">Photo will replace drink photo under shop description</label>
                     <input name="file" type="file" />
                     <br />
-                    <input type="submit" value="upload"/>
+                    <input type="submit" value="upload" class="m-2"/>
                 </form>
             </div>
         </div>
     </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingNine">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                Upload Shop Description image
-            </button>
-        </h2>
-        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <form th:action="@{/shopDescriptionImageUpload}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Upload Shop Description Photo</label>
-                    <input name="file" type="file" />
-                    <br />
-                    <input type="submit" value="upload"/>
-                </form>
-            </div>
-        </div>
-    </div>
+<!--    <div class="accordion-item">-->
+<!--        <h2 class="accordion-header" id="headingNine">-->
+<!--            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">-->
+<!--                Upload Shop Description image-->
+<!--            </button>-->
+<!--        </h2>-->
+<!--        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">-->
+<!--            <div class="accordion-body">-->
+<!--                <form th:action="@{/shopDescriptionImageUpload}" method="POST" enctype="multipart/form-data">-->
+<!--                    <label for="file">Upload Shop Description Photo</label>-->
+<!--                    <input name="file" type="file" />-->
+<!--                    <br />-->
+<!--                    <input type="submit" value="upload"/>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingTen">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
@@ -291,38 +323,6 @@
                     <div class="mb-3">
                         <label for="reviewBody" class="form-label">Review Body</label>
                         <input type="text" class="form-control" id="reviewBody" th:field="*{reviewBody}" aria-describedby="reviewBody">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingEleven">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                Edit Barber info
-            </button>
-        </h2>
-        <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <form th:action="@{/Controls/EditBarber}" method="post" th:object="${barber}">
-                    <div id="linkHelp" class="form-text">For any fields not being changed, enter values from list below</div>
-                    <div class="mb-3">
-                        <label for="barberId" class="form-label">Id number of Barber to edit</label>
-                        <input type="number" min="1" class="form-control" id="barberId" name="barberId" aria-describedby="barberId">
-                    </div>
-                    <div class="mb-3">
-                        <label for="barberName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="barberName" th:field="*{firstName}" th:value="${$firstName}" aria-describedby="reviewBody">
-                    </div>
-                    <div class="mb-3">
-                        <label for="barberBio" class="form-label">Barber Bio</label>
-                        <input type="text" class="form-control" id="barberBio" th:field="*{bio}" th:value="${bio}" aria-describedby="reviewBody">
-                    </div>
-                    <div class="mb-3">
-                        <label for="barberLink" class="form-label">Barber Link</label>
-                        <input type="text" class="form-control" id="barberLink" th:field="*{link}" th:value="${link}" aria-describedby="reviewBody">
-                        <div id="linkHelp" class="form-text">Enter link without "http://"</div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -372,7 +372,7 @@
 </div>
 
 <div>
-    <h3 class="d-flex justify-content-center mt-3">Barbers:</h3>
+    <h3 class="d-flex justify-content-center mt-3" style="color: whitesmoke; text-decoration: underline">Barbers:</h3>
     <br>
     <ul th:each="barbers : ${barbers}">
         <li>
@@ -387,7 +387,7 @@
         </li>
     </ul>
 
-    <h3 class="d-flex justify-content-center">Users:</h3>
+    <h3 class="d-flex justify-content-center" style="color: whitesmoke; text-decoration: underline">Users:</h3>
     <ul th:each="users : ${users}">
         <li>
             <div class="card">

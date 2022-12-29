@@ -19,6 +19,10 @@ public class Shop {
 
     private String shopAddress;
 
+    private String shopMessageHeader;
+
+    private String shopMessageDescription;
+
     private String instagramLink;
 
     private String facebookLink;
@@ -57,12 +61,14 @@ public class Shop {
     }
 
 
-    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink ) {
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String shopMessageHeader, String shopMessageDescription, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink ) {
         this.id = id;
         this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
         this.shopTeleNum = shopTeleNum;
         this.shopAddress = shopAddress;
+        this.shopMessageHeader = shopMessageHeader;
+        this.shopMessageDescription = shopMessageDescription;
         this.monOpen = monOpen;
         this.monClose = monClose;
         this.tueOpen = tueOpen;
@@ -123,6 +129,22 @@ public class Shop {
 
     public void setShopAddress(String shopAddress) {
         this.shopAddress = shopAddress;
+    }
+
+    public String getShopMessageHeader() {
+        return shopMessageHeader;
+    }
+
+    public void setShopMessageHeader(String shopMessageHeader) {
+        this.shopMessageHeader = shopMessageHeader;
+    }
+
+    public String getShopMessageDescription() {
+        return shopMessageDescription;
+    }
+
+    public void setShopMessageDescription(String shopMessageDescription) {
+        this.shopMessageDescription = shopMessageDescription;
     }
 
     public String getInstagramLink() {

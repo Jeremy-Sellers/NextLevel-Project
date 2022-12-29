@@ -15,10 +15,22 @@
         <img th:src="@{${'/images/' + shops.shopPhotoName}}" class="img-fluid shopBG">
     </header>
 
+        <section class="shopMessageContainer" th:object="${shops}">
+            <div th:if="${shops.shopMessageHeader != ''}" class="card messageCard">
+                <div class="card-header messageCardHeader">
+                    <h3 th:text="${shops.shopMessageHeader}">Message Header</h3>
+                    <hr style="color: rgb(243,187,34)">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-text" th:text="${shops.shopMessageDescription}">Message Description</h5>
+                </div>
+            </div>
+        </section>
+
     <section class="px-4 mt-2 pt-2 barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
-            <div class="card m-2 barberParentCard" style="width: 20rem;">
+            <div class="card m-2 barberParentCard col-8" style="width: 20rem;">
                 <img th:src="@{${'/images/' + barber.photoName}}">
                 <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>
@@ -49,8 +61,8 @@
 
         <div class="card text-center shopDescription" style="width: auto;" th:each="shop : ${shops}">
             <div class="card-body">
-                <h2 class="card-title text-center" th:text="${shop.shopHeading}"></h2>
-                <p class="card-text px-3 mx-5" th:text="${shop.shopDescription}"></p>
+                <h2 class="card-title text-center" style="color:rgb(243,187,34); text-decoration: underline" th:text="${shop.shopHeading}"></h2>
+                <h5 class="card-text px-3 mx-5" th:text="${shop.shopDescription}"></h5>
             </div>
         </div>
 
@@ -61,18 +73,21 @@
         <section class="drinkPhotoContainer"></section>
     </section>
 
+
+    <h4 class="pt-2 mt-2 text-center" style="color: whitesmoke;
+text-decoration: underline">Reviews</h4>
     <div class="reviewsCarousel p-3 d-flex min justify-content-center" id="reviews">
 
         <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" th:each="review : ${reviews}" th:unless="${review.id > 4}">
                     <!--Creates card in carousel for every review-->
-                    <div class="card">
-                        <div class="card-header" th:text="${review.reviewTitle}">
+                    <div class="card" style="background-color: black">
+                        <div class="card-header reviewHeader" th:text="${review.reviewTitle}">
 
                         </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
+                        <div class="card-body pt-0">
+                            <blockquote class="blockquote mb-0 reviewBody">
                                 <p th:text="${review.reviewBody}"></p>
                             </blockquote>
                         </div>
@@ -82,11 +97,11 @@
 
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="carousel-control-prev-icon visually-hidden"  aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
@@ -95,7 +110,7 @@
     <div class="infoContainer  text-center m-2" id="shopInfo">
         <div class="row">
             <div>
-                <h3>Shop Hours</h3>
+                <h3 style="color: rgb(243,187,34)">Shop Hours</h3>
                 <div th:object="${shops}">
                     <h4>Monday: <span th:text="${shops.monOpen}"></span> - <span th:text="${shops.monClose}"></span> </h4>
                 </div>
@@ -118,6 +133,8 @@
                     <h4>Sunday: <span th:text="${shops.sunOpen}"></span> - <span th:text="${shops.sunClose}"></span> </h4>
                 </div>
             </div>
+
+            <hr style="color: rgb(243,187,34)">
 
             <div th:object="${shops}">
                 <h3>Contact info</h3>
