@@ -119,6 +119,8 @@ public class FormsController {
         Shop findShop = shopDao.findById(1);
         findShop.setShopHeading(shop.getShopHeading());
         findShop.setShopDescription(shop.getShopDescription());
+        findShop.setShopMessageHeader(shop.getShopMessageHeader());
+        findShop.setShopMessageDescription(shop.getShopMessageDescription());
         findShop.setShopAddress(shop.getShopAddress());
         findShop.setFacebookLink(shop.getFacebookLink());
         findShop.setInstagramLink(shop.getInstagramLink());
