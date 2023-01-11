@@ -121,6 +121,7 @@ public class FormsController {
         findShop.setShopDescription(shop.getShopDescription());
         findShop.setShopMessageHeader(shop.getShopMessageHeader());
         findShop.setShopMessageDescription(shop.getShopMessageDescription());
+        findShop.setShopAppointmentsDescription(shop.getShopAppointmentsDescription());
         findShop.setShopAddress(shop.getShopAddress());
         findShop.setFacebookLink(shop.getFacebookLink());
         findShop.setInstagramLink(shop.getInstagramLink());

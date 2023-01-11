@@ -23,6 +23,9 @@ public class Shop {
 
     private String shopMessageDescription;
 
+    @Column(length = 500)
+    private String shopAppointmentsDescription;
+
     private String instagramLink;
 
     private String facebookLink;
@@ -61,7 +64,7 @@ public class Shop {
     }
 
 
-    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String shopMessageHeader, String shopMessageDescription, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink ) {
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String shopMessageHeader, String shopMessageDescription, String shopAppointmentsDescription, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink ) {
         this.id = id;
         this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
@@ -69,6 +72,7 @@ public class Shop {
         this.shopAddress = shopAddress;
         this.shopMessageHeader = shopMessageHeader;
         this.shopMessageDescription = shopMessageDescription;
+        this.shopAppointmentsDescription = shopAppointmentsDescription;
         this.monOpen = monOpen;
         this.monClose = monClose;
         this.tueOpen = tueOpen;
@@ -145,6 +149,14 @@ public class Shop {
 
     public void setShopMessageDescription(String shopMessageDescription) {
         this.shopMessageDescription = shopMessageDescription;
+    }
+
+    public String getShopAppointmentsDescription() {
+        return shopAppointmentsDescription;
+    }
+
+    public void setShopAppointmentsDescription(String shopAppointmentsDescription) {
+        this.shopAppointmentsDescription = shopAppointmentsDescription;
     }
 
     public String getInstagramLink() {
