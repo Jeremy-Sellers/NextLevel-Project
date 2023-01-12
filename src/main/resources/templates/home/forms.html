@@ -381,6 +381,23 @@
             </div>
         </div>
     </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFourteen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                Upload Portfolio Image
+            </button>
+        </h2>
+        <div id="collapseFourteen" class="accordion-collapse collapse" aria-labelledby="headingFourteen" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form th:action="@{/addShopPortfolioPhoto}" method="POST" enctype="multipart/form-data">
+                    <label for="file">Choose Photo to add to portfolio slideshow</label>
+                    <input name="file" type="file" />
+                    <br />
+                    <input type="submit" value="upload" class="m-2"/>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div>
