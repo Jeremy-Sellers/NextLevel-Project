@@ -101,7 +101,7 @@
         </div>
 
 
-    <h4 class="pt-2 mt-2 text-center" style="color: whitesmoke;
+    <h4 class="pt-2 mt-2 text-center" style="color: rgb(243,187,34);
 text-decoration: underline">Reviews</h4>
     <div class="reviewsCarousel p-3 d-flex min justify-content-center" id="reviews">
 
@@ -134,6 +134,23 @@ text-decoration: underline">Reviews</h4>
         </div>
     </div>
 
+    <section class="servicesList text-center m-2">
+        <div class="row">
+            <div>
+                <h3 style="color: rgb(243,187,34)">Services Offered</h3>
+                <ul style="list-style: none; color: whitesmoke">
+                    <li>Service one</li>
+                    <li>Service xyz</li>
+                    <li>Service xyz</li>
+                    <li>Service xyz</li>
+                    <li>Service xyz</li>
+                    <li>Service xyz</li>
+                    <li>Service xyz</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 
     <div class="infoContainer  text-center m-2" id="shopInfo">
         <div class="row">
@@ -165,7 +182,7 @@ text-decoration: underline">Reviews</h4>
             <hr style="color: rgb(243,187,34)">
 
             <div th:object="${shops}">
-                <h3>Contact info</h3>
+                <h3 style="color: rgb(243,187,34)">Contact info</h3>
                 <p th:text="${shops.shopTeleNum}"></p>
                 <p th:text="${shops.shopAddress}"></p>
                 <div style="font-size: 2rem;">
