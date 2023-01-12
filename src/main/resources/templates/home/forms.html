@@ -398,6 +398,26 @@
             </div>
         </div>
     </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFifteen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+                Delete Portfolio Photo
+            </button>
+        </h2>
+        <div id="collapseFifteen" class="accordion-collapse collapse" aria-labelledby="headingFifteen" data-bs-parent="#accordionExample">
+            <div class="accordion-body" th:each="photo : ${photo}">
+                <div class="card-body">
+                    <p>Name: <span th:text="${photo.photoName}"></span> </p>
+                </div>
+                <form class="deleteForm" th:method="post" th:action="@{/deleteShopPortfolioPhoto}">
+                    <input type="hidden" th:value="${photo.id}" name="deletePhoto">
+                    <button class="btn btn-primary px-3 mx-auto border-0">
+                        Delete Photo
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div>

@@ -249,4 +249,10 @@ public class FormsController {
         return "redirect:/";
     }
 
+    @PostMapping("/deleteShopPortfolioPhoto")
+    public String deleteShopPortfolioPhoto(@RequestParam(name = "deletePhoto") long id){
+        photoDao.deleteById(id);
+        return "redirect:/";
+    }
+
 }
