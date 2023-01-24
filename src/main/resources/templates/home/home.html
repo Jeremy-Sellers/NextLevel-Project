@@ -121,14 +121,8 @@ text-decoration: underline">Reviews</h4>
         <div class="row">
             <div>
                 <h3 style="color: rgb(243,187,34)">Services Offered</h3>
-                <ul style="list-style: none; color: whitesmoke">
-                    <li>Service one</li>
-                    <li>Service xyz</li>
-                    <li>Service xyz</li>
-                    <li>Service xyz</li>
-                    <li>Service xyz</li>
-                    <li>Service xyz</li>
-                    <li>Service xyz</li>
+                <ul style="list-style: none; color: whitesmoke" th:each="service : ${services}">
+                    <li th:text="${service.serviceName}"></li>
                 </ul>
             </div>
         </div>

@@ -21,14 +21,16 @@ public class FormsController {
     private final ReviewRepository reviewDao;
     private final PhotoRepository photoDao;
     private final UserRepository userDao;
+    private final ServiceRepository serviceDao;
 
-    public FormsController(BarberRepository barberDao, DrinkRepository drinkDao, ShopRepository shopDao, ReviewRepository reviewDao, PhotoRepository photoDao, UserRepository userDao) {
+    public FormsController(BarberRepository barberDao, DrinkRepository drinkDao, ShopRepository shopDao, ReviewRepository reviewDao, PhotoRepository photoDao, UserRepository userDao, ServiceRepository serviceDao) {
         this.barberDao = barberDao;
         this.drinkDao = drinkDao;
         this.shopDao = shopDao;
         this.reviewDao = reviewDao;
         this.photoDao = photoDao;
         this.userDao = userDao;
+        this.serviceDao = serviceDao;
     }
 
     @GetMapping("/Controls")
@@ -42,6 +44,8 @@ public class FormsController {
         model.addAttribute("users",userDao.findAll());
         model.addAttribute("review", new Review());
         model.addAttribute("reviews",reviewDao.findAll());
+        model.addAttribute("services", serviceDao.findAll());
+        model.addAttribute("service", new Service());
         return "home/forms";
     }
 
@@ -69,6 +73,18 @@ public class FormsController {
     @PostMapping("/Controls/addReview")
     public String addReview(@ModelAttribute Review review){
         reviewDao.save(review);
+        return "redirect:/";
+    }
+
+    @PostMapping("/addService")
+    public String addService(@ModelAttribute Service service){
+        serviceDao.save(service);
+        return "redirect:/";
+    }
+
+    @PostMapping("/deleteService")
+    public String deleteService(@RequestParam(name = "deleteService") long id){
+        serviceDao.deleteById(id);
         return "redirect:/";
     }
 
@@ -123,6 +139,7 @@ public class FormsController {
         findShop.setShopMessageDescription(shop.getShopMessageDescription());
         findShop.setShopAppointmentsDescription(shop.getShopAppointmentsDescription());
         findShop.setShopAddress(shop.getShopAddress());
+        findShop.setShopTeleNum(shop.getShopTeleNum());
         findShop.setFacebookLink(shop.getFacebookLink());
         findShop.setInstagramLink(shop.getInstagramLink());
         findShop.setMonOpen(shop.getMonOpen());

@@ -418,6 +418,44 @@
             </div>
         </div>
     </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSixteen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
+                Delete Service
+            </button>
+        </h2>
+        <div id="collapseSixteen" class="accordion-collapse collapse" aria-labelledby="headingSixteen" data-bs-parent="#accordionExample">
+            <div class="accordion-body" th:each="service : ${services}">
+                <div class="card-body">
+                    <p>Service: <span th:text="${service.serviceName}"></span> </p>
+                </div>
+                <form class="deleteForm" th:method="post" th:action="@{/deleteService}">
+                    <input type="hidden" th:value="${service.id}" name="deleteService">
+                    <button class="btn btn-primary px-3 mx-auto border-0">
+                        Delete Service
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSeventeen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen">
+                Add Service
+            </button>
+        </h2>
+        <div id="collapseSeventeen" class="accordion-collapse collapse" aria-labelledby="headingSeventeen" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form th:action="@{/addService}" method="post" th:object="${service}">
+                    <div class="mb-3">
+                        <label for="service" class="form-label">Service</label>
+                        <input type="text" class="form-control" id="service" th:field="*{serviceName}" aria-describedby="serviceName">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div>
