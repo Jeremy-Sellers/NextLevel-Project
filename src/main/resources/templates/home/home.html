@@ -15,7 +15,7 @@
         <img th:src="@{${'/images/' + shops.shopPhotoName}}" class="img-fluid shopBG">
     </header>
 
-        <section class="shopMessageContainer" th:object="${shops}">
+        <blockquote class="shopMessageContainer" th:object="${shops}">
             <div th:if="${shops.shopMessageHeader != ''}" class="card messageCard">
                 <div class="card-header messageCardHeader">
                     <h3 th:text="${shops.shopMessageHeader}">Message Header</h3>
@@ -25,7 +25,7 @@
                     <h5 class="card-text" th:text="${shops.shopMessageDescription}">Message Description</h5>
                 </div>
             </div>
-        </section>
+        </blockquote>
 
     <section class="px-4 mt-2 pt-2 barberList" id="barberList" >
 
@@ -90,7 +90,7 @@ text-decoration: underline">Reviews</h4>
 
         <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active" th:each="review : ${reviews}" th:unless="${review.id > 4}">
+                <div class="carousel-item active" th:each="review : ${reviews}">
                     <!--Creates card in carousel for every review-->
                     <div class="card" style="background-color: black">
                         <div class="card-header reviewHeader" th:text="${review.reviewTitle}">

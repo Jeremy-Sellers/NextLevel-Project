@@ -263,7 +263,7 @@ public class FormsController {
             e.printStackTrace();
         }
 
-        return "redirect:/";
+        return "redirect:/Controls";
     }
 
     @PostMapping("/deleteShopPortfolioPhoto")
