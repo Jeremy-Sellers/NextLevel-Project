@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "admin") String adminPass){
-
+        String AdminPassCheck = "NLB2020!$";
         if (adminPass.equals(AdminPassCheck)){
             user.setRoles("ADMIN");
         } else {
