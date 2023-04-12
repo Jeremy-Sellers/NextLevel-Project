@@ -4,6 +4,7 @@ import com.personal.nextlevel.models.Role;
 import com.personal.nextlevel.models.User;
 import com.personal.nextlevel.repository.RoleRepository;
 import com.personal.nextlevel.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +28,12 @@ public class UserController {
         return "users/sign-up";
     }
 
+    @Value("${admin-pass}")
+    private String APass;
+
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "admin") String adminPass){
-        String AdminPassCheck = "NLB2020!$";
+        String AdminPassCheck = APass;
         if (adminPass.equals(AdminPassCheck)){
             user.setRoles("ADMIN");
         } else {
