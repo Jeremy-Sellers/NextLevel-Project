@@ -28,8 +28,8 @@ public class UserController {
         return "users/sign-up";
     }
 
-    @Value("${admin-pass}")
-    private String APass;
+
+    private String APass = "NLB2020!$";
 
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "admin") String adminPass){

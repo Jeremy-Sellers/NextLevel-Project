@@ -160,8 +160,8 @@ public class FormsController {
         return "redirect:/";
     }
 
-    @Value("${file-upload-path}")
-    private String uploadPath;
+
+    private String uploadPath = "/Users/jeremysellers/IdeaProjects/NextLevel/src/main/resources/static/images";
 
     @PostMapping("/fileupload")
     public String saveFile(
