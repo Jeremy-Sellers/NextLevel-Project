@@ -43,6 +43,7 @@
                     <label for="file"></label>
                     <input name="file" type="file" />
 
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-primary m-2">Submit</button>
                     <div id="submitWarning" class="form-text">Allow Time for Database to update</div>
 
@@ -77,6 +78,7 @@
                         <input type="text" class="form-control" id="barberLink" th:field="*{link}" th:value="${link}" aria-describedby="reviewBody">
                         <div id="linkHelp" class="form-text">Enter link without "http://"</div>
                     </div>
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -94,6 +96,7 @@
                     <p>Name: <span th:text="${barbers.firstName}"></span>, <span th:text="${barbers.lastName}"></span> </p>
                 </div>
                 <form class="deleteForm" th:method="post" th:action="@{/Controls/Delete}">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <input type="hidden" th:value="${barbers.id}" name="deleteBarber">
                     <button class="btn btn-primary px-3 mx-auto border-0">
                         Delete Barber
@@ -243,6 +246,7 @@
                         <label for="sunClose" class="form-label">Sunday Close Time</label>
                         <input type="text" class="form-control" id="sunClose" th:field="*{sunClose}" th:value="${sunClose}" aria-describedby="sunClose">
                     </div>
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -263,6 +267,7 @@
                     <br />
                     <label for="barber">Select a barber by id </label>
                     <input id="barber" name="barber" type="number" min="1">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <input type="submit" value="upload" class="m-2"/>
                 </form>
             </div>
@@ -280,6 +285,7 @@
                     <label for="file">Chosen photo will replace photo at top of homepage</label>
                     <input name="file" type="file" />
                     <br />
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <input type="submit" value="upload" class="m-2"/>
                 </form>
             </div>
@@ -297,6 +303,7 @@
                     <label for="file">Photo will replace drink photo under shop description</label>
                     <input name="file" type="file" />
                     <br />
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <input type="submit" value="upload" class="m-2"/>
                 </form>
             </div>
@@ -336,6 +343,7 @@
                         <label for="reviewBody" class="form-label">Review Body</label>
                         <input type="text" class="form-control" id="reviewBody" th:field="*{reviewBody}" aria-describedby="reviewBody">
                     </div>
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -354,6 +362,7 @@
                 </div>
                 <form class="deleteForm" th:method="post" th:action="@{/Controls/DeleteReview}">
                     <input type="hidden" th:value="${reviews.id}" name="deleteReview">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <button class="btn btn-primary px-3 mx-auto border-0">
                         Delete Review
                     </button>
@@ -374,6 +383,7 @@
                 </div>
                 <form class="deleteForm" th:method="post" th:action="@{/Controls/DeleteUser}">
                     <input type="hidden" th:value="${users.id}" name="deleteUser">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <button class="btn btn-primary px-3 mx-auto border-0">
                         Delete User
                     </button>
@@ -393,6 +403,7 @@
                     <label for="file">Choose Photo to add to portfolio slideshow</label>
                     <input name="file" type="file" />
                     <br />
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <input type="submit" value="upload" class="m-2"/>
                 </form>
             </div>
@@ -410,6 +421,7 @@
                     <p>Name: <span th:text="${photo.photoName}"></span> </p>
                 </div>
                 <form class="deleteForm" th:method="post" th:action="@{/deleteShopPortfolioPhoto}">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <input type="hidden" th:value="${photo.id}" name="deletePhoto">
                     <button class="btn btn-primary px-3 mx-auto border-0">
                         Delete Photo
@@ -430,6 +442,7 @@
                     <p>Service: <span th:text="${service.serviceName}"></span> </p>
                 </div>
                 <form class="deleteForm" th:method="post" th:action="@{/deleteService}">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <input type="hidden" th:value="${service.id}" name="deleteService">
                     <button class="btn btn-primary px-3 mx-auto border-0">
                         Delete Service
@@ -451,6 +464,7 @@
                         <label for="service" class="form-label">Service</label>
                         <input type="text" class="form-control" id="service" th:field="*{serviceName}" aria-describedby="serviceName">
                     </div>
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
