@@ -3,7 +3,9 @@ package com.personal.nextlevel.controller;
 import com.personal.nextlevel.models.*;
 import com.personal.nextlevel.repository.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
 
@@ -24,6 +27,9 @@ public class FormsController {
     private final PhotoRepository photoDao;
     private final UserRepository userDao;
     private final ServiceRepository serviceDao;
+    @Autowired
+    private ResourceLoader resourceLoader;
+
 
     public FormsController(BarberRepository barberDao, DrinkRepository drinkDao, ShopRepository shopDao, ReviewRepository reviewDao, PhotoRepository photoDao, UserRepository userDao, ServiceRepository serviceDao) {
         this.barberDao = barberDao;
@@ -51,26 +57,51 @@ public class FormsController {
         return "home/forms";
     }
 
-    @PostMapping("/Controls")
-    public String addBarber(@ModelAttribute Barber barber,@RequestParam(name = "file") MultipartFile uploadedFile){
-        barberDao.save(barber);
+//    @PostMapping("/Controls")
+//    public String addBarber(@ModelAttribute Barber barber,@RequestParam(name = "file") MultipartFile uploadedFile){
+//        barberDao.save(barber);
+//
+//        String filename = uploadedFile.getOriginalFilename();
+//        String filepath = Paths.get(uploadPath, filename).toString();
+//        File destinationFile = new File(filepath);
+//        try {
+//            uploadedFile.transferTo(destinationFile);
+//            Photo photo = new Photo();
+//            photo.setPhotoName(filename);
+//            photo.setBarber(barber);
+//            barber.setPhotoName(filename);
+//            photoDao.save(photo);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return "redirect:/";
+//    }
+@PostMapping("/Controls")
+public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "file") MultipartFile uploadedFile) {
+    barberDao.save(barber);
 
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
-        try {
-            uploadedFile.transferTo(destinationFile);
-            Photo photo = new Photo();
-            photo.setPhotoName(filename);
-            photo.setBarber(barber);
-            barber.setPhotoName(filename);
-            photoDao.save(photo);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "redirect:/";
+    String filename = uploadedFile.getOriginalFilename();
+    try {
+        // Get the application's root folder
+        File rootFolder = new File(resourceLoader.getResource("classpath:/").getURI());
+        // Build the file path relative to the root folder
+        File destinationFile = new File(rootFolder, uploadPath + "/" + filename);
+        // Create the directories if they don't exist
+        destinationFile.getParentFile().mkdirs();
+        // Save the file
+        uploadedFile.transferTo(destinationFile);
 
+        Photo photo = new Photo();
+        photo.setPhotoName(filename);
+        photo.setBarber(barber);
+        barber.setPhotoName(filename);
+        photoDao.save(photo);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+    return "redirect:/";
+}
+
 
     @PostMapping("/Controls/addReview")
     public String addReview(@ModelAttribute Review review){
@@ -163,7 +194,7 @@ public class FormsController {
     }
 
 
-    private String uploadPath = "/Users/jeremysellers/IdeaProjects/NextLevel/src/main/resources/static/images";
+    private String uploadPath = "static/images";
 
     @PostMapping("/fileupload")
     public String saveFile(
