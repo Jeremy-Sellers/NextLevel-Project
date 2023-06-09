@@ -77,26 +77,16 @@ public class FormsController {
 //        return "redirect:/";
 //    }
 @PostMapping("/Controls")
-public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "file") MultipartFile uploadedFile) {
+public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "photoUrl3") String photoUrl3) {
     barberDao.save(barber);
 
-    String filename = uploadedFile.getOriginalFilename();
     try {
-        // Get the application's root folder
-        File rootFolder = new File(resourceLoader.getResource("classpath:/").getURI());
-        // Build the file path relative to the root folder
-        File destinationFile = new File(rootFolder, uploadPath + "/" + filename);
-        // Create the directories if they don't exist
-        destinationFile.getParentFile().mkdirs();
-        // Save the file
-        uploadedFile.transferTo(destinationFile);
-
         Photo photo = new Photo();
-        photo.setPhotoName(filename);
+        photo.setPhotoUrl(photoUrl3);
         photo.setBarber(barber);
-        barber.setPhotoName(filename);
+        barber.setPhotoUrl(photoUrl3);
         photoDao.save(photo);
-    } catch (IOException e) {
+    } catch (Exception e) {
         e.printStackTrace();
     }
     return "redirect:/";
@@ -198,22 +188,18 @@ public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "fil
 
     @PostMapping("/fileupload")
     public String saveFile(
-            @RequestParam(name = "file") MultipartFile uploadedFile,
+            @RequestParam(name = "photoUrl") String photoUrl,
             Model model, @RequestParam(name = "barber") long id
     ) {
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
         try {
-            uploadedFile.transferTo(destinationFile);
             Barber barberForImage = barberDao.getById(id);
-            barberForImage.setPhotoName(filename);
+            barberForImage.setPhotoUrl(photoUrl);
             Photo photo = new Photo();
-            photo.setPhotoName(filename);
+            photo.setPhotoUrl(photoUrl);
             photo.setBarber(barberForImage);
             photoDao.save(photo);
             model.addAttribute("message", "File successfully uploaded!");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("message", "Oops! Something went wrong! " + e);
         }
@@ -221,19 +207,15 @@ public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "fil
     }
 
     @PostMapping("/shopImageUpload")
-    public String uploadShopImage(@RequestParam(name = "file") MultipartFile uploadedFile){
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
+    public String uploadShopImage(@RequestParam(name = "photoUrl2")  String photoUrl2){
         try {
-            uploadedFile.transferTo(destinationFile);
             Photo photo = new Photo();
-            photo.setPhotoName(filename);
+            photo.setPhotoUrl(photoUrl2);
             Shop shop = shopDao.getById(1);
-            shop.setShopPhotoName(filename);
+            shop.setShopPhotoUrl(photoUrl2);
             photo.setShop(shop);
             photoDao.save(photo);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

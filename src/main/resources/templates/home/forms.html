@@ -18,7 +18,7 @@
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form th:action="@{/Controls}" method="post" th:object="${barber}" enctype="multipart/form-data">
+                <form id="createBarberForm" th:action="@{/Controls}" method="post" th:object="${barber}" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
                         <input type="text" class="form-control" id="firstName" th:field="*{firstName}" aria-describedby="firstName">
@@ -41,11 +41,11 @@
                         <input type="text" class="form-control" id="bio" th:field="*{bio}">
                     </div>
 
-                    <label for="file"></label>
-                    <input name="file" type="file" />
+                    <button id="filepicker3" type="button"/>upload image</button>
+                    <input type="hidden" id="photoUrl3" name="photoUrl3">
 
                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-primary m-2">Submit</button>
+                    <button type="submit" id="submit-button3" class="btn btn-primary m-2">Submit</button>
                     <div id="submitWarning" class="form-text">Allow Time for Database to update</div>
 
                 </form>
@@ -262,14 +262,15 @@
         </h2>
         <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form th:action="@{/fileupload}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Photo will replace photo shown for barber chosen</label>
-                    <input id="file" name="file" type="file" />
+                <form id="barberPhotoForm" th:action="@{/fileupload}" method="POST">
+                    <label for="filepicker">Photo will replace photo shown for barber chosen</label>
+                    <button id="filepicker" name="file" type="button"/>upload image</button>
                     <br />
                     <label for="barber">Select a barber by id </label>
                     <input id="barber" name="barber" type="number" min="1">
                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                    <input type="submit" value="upload" class="m-2"/>
+                    <input type="hidden" id="photoUrl" name="photoUrl">
+                    <input type="submit" id="submit-button" value="upload" class="m-2" disabled/>
                 </form>
             </div>
         </div>
@@ -282,12 +283,13 @@
         </h2>
         <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form th:action="@{/shopImageUpload}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Chosen photo will replace photo at top of homepage</label>
-                    <input name="file" type="file" />
+                <form id="shopPhotoForm" th:action="@{/shopImageUpload}" method="POST">
+                    <label for="filepicker2">Chosen photo will replace photo at top of homepage</label>
+                    <button id="filepicker2" type="button"/>upload image</button>
                     <br />
                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                    <input type="submit" value="upload" class="m-2"/>
+                    <input type="hidden" id="photoUrl2" name="photoUrl2">
+                    <input type="submit" id="submit-button2" value="upload" class="m-2"/>
                 </form>
             </div>
         </div>
@@ -505,5 +507,73 @@
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+<!--Barber photo replace-->
+    var client = filestack.init('AIQ7pTLJSPeMuorhInEAtz');
+    document.getElementById('filepicker').addEventListener('click', function(e) {
+        e.preventDefault();
+        var options = {
+            onUploadDone: function(response) {
+                document.getElementById('photoUrl').value = response.filesUploaded[0].url;
+                document.getElementById('submit-button').disabled = false;
+            }
+        };
+        var picker = client.picker(options);
+        picker.open();
+    });
+
+    document.getElementById('barberPhotoForm').addEventListener('submit', function(e) {
+        if (!document.getElementById('photoUrl').value) {
+            e.preventDefault();
+            alert("Please upload the image first.");
+        }
+    });
+<!--Barber photo replace-->
+
+//Shop Header Photo
+var client2 = filestack.init('AIQ7pTLJSPeMuorhInEAtz');
+document.getElementById('filepicker2').addEventListener('click', function(e) {
+    e.preventDefault();
+    var options = {
+        onUploadDone: function(response) {
+            document.getElementById('photoUrl2').value = response.filesUploaded[0].url;
+            document.getElementById('submit-button2').disabled = false;
+        }
+    };
+    var picker2 = client2.picker(options);
+    picker2.open();
+});
+
+document.getElementById('shopPhotoForm').addEventListener('submit', function(e) {
+    if (!document.getElementById('photoUrl2').value) {
+        e.preventDefault();
+        alert("Please upload the image first.");
+    }
+});
+//Shop Header Photo
+
+//Create barber photo
+var client3 = filestack.init('AIQ7pTLJSPeMuorhInEAtz');
+document.getElementById('filepicker3').addEventListener('click', function(e) {
+    e.preventDefault();
+    var options = {
+        onUploadDone: function(response) {
+            document.getElementById('photoUrl3').value = response.filesUploaded[0].url;
+            document.getElementById('submit-button3').disabled = false;
+        }
+    };
+    var picker3 = client3.picker(options);
+    picker3.open();
+});
+
+document.getElementById('createBarberForm').addEventListener('submit', function(e) {
+    if (!document.getElementById('photoUrl3').value) {
+        e.preventDefault();
+        alert("Please upload the image first.");
+    }
+});
+</script>
+
 
 </html>

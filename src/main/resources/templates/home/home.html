@@ -13,7 +13,7 @@
     <nav th:replace="partials/navbar.html :: LoggedOutNavbar" style="opacity: 0.5" class="nav justify-content-center"></nav>
 
     <header class="shopImages " th:object="${shops}">
-        <img th:src="@{${'/images/' + shops.shopPhotoName}}" class="img-fluid shopBG">
+        <img th:src="${shops.shopPhotoUrl}" class="img-fluid shopBG">
     </header>
 
         <blockquote class="shopMessageContainer" th:object="${shops}">
@@ -32,7 +32,7 @@
 
         <div th:each="barber : ${barbers}">
             <div class="card m-2 border-dark barberParentCard col-8" style="width: 20rem;">
-                <img th:src="@{${'/images/' + barber.photoName}}">
+                <img th:src="${barber.photoUrl}">
                 <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>
                     <p th:text="${barber.bio}"></p>

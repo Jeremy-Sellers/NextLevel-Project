@@ -60,11 +60,15 @@ public class Shop {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     private List<Photo> photos;
 
+    private String shopPhotoUrl;
+
+    private String shopDescriptionPhotoUrl;
+
     public Shop() {
     }
 
 
-    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String shopMessageHeader, String shopMessageDescription, String shopAppointmentsDescription, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink ) {
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String shopMessageHeader, String shopMessageDescription, String shopAppointmentsDescription, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink, String shopPhotoUrl, String shopDescriptionPhotoUrl) {
         this.id = id;
         this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
@@ -93,6 +97,8 @@ public class Shop {
         this.shopDescriptionPhotoName = shopDescriptionPhotoName;
         this.instagramLink = instagramLink;
         this.facebookLink = facebookLink;
+        this.shopPhotoUrl = shopPhotoUrl;
+        this.shopDescriptionPhotoUrl = shopDescriptionPhotoUrl;
     }
 
     public long getId() {
@@ -317,5 +323,21 @@ public class Shop {
 
     public void setPhotos(List<Photo> photos) {
         this.photos = photos;
+    }
+
+    public String getShopPhotoUrl() {
+        return shopPhotoUrl;
+    }
+
+    public void setShopPhotoUrl(String shopPhotoUrl) {
+        this.shopPhotoUrl = shopPhotoUrl;
+    }
+
+    public String getShopDescriptionPhotoUrl() {
+        return shopDescriptionPhotoUrl;
+    }
+
+    public void setShopDescriptionPhotoUrl(String shopDescriptionPhotoUrl) {
+        this.shopDescriptionPhotoUrl = shopDescriptionPhotoUrl;
     }
 }
