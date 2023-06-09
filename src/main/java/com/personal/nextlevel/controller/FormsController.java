@@ -222,25 +222,21 @@ public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "pho
         return "redirect:/";
     }
 
-    @PostMapping("/shopDrinkUpload")
-    public String uploadDrinkImage(@RequestParam(name = "file") MultipartFile uploadedFile){
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
-        try {
-            uploadedFile.transferTo(destinationFile);
-            Photo photo = new Photo();
-            photo.setPhotoName(filename);
-            Shop shop = shopDao.getById(1);
-            shop.setDrinkPhotoName(filename);
-            photo.setShop(shop);
-            photoDao.save(photo);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "redirect:/";
-    }
+//    @PostMapping("/shopDrinkUpload")
+//    public String uploadDrinkImage(@RequestParam(name = "photoUrl4") String photoUrl4){
+//        try {
+//            Photo photo = new Photo();
+//            photo.setPhotoUrl(photoUrl4);
+//            Shop shop = shopDao.getById(1);
+//            shop.setShopDrinkPhotoUrl(photoUrl4);
+//            photo.setShop(shop);
+//            photoDao.save(photo);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return "redirect:/";
+//    }
 
     @PostMapping("/shopDescriptionImageUpload")
     public String uploadShopDescriptionImage(@RequestParam(name = "file") MultipartFile uploadedFile){
@@ -263,18 +259,14 @@ public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "pho
     }
 
     @PostMapping("/addShopPortfolioPhoto")
-    public String addShopPortfolioPhoto(@RequestParam(name = "file") MultipartFile uploadedFile){
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
+    public String addShopPortfolioPhoto(@RequestParam(name = "photoUrl4")  String photoUrl4){
         try {
-            uploadedFile.transferTo(destinationFile);
             Photo photo = new Photo();
-            photo.setPhotoName(filename);
+            photo.setShopPortfolioImageUrl(photoUrl4);
             Shop shop = shopDao.getById(1);
             photo.setShop(shop);
             photoDao.save(photo);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

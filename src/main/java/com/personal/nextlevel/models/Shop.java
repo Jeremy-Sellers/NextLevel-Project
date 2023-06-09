@@ -62,13 +62,15 @@ public class Shop {
 
     private String shopPhotoUrl;
 
+    private String shopDrinkPhotoUrl;
+
     private String shopDescriptionPhotoUrl;
 
     public Shop() {
     }
 
 
-    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String shopMessageHeader, String shopMessageDescription, String shopAppointmentsDescription, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink, String shopPhotoUrl, String shopDescriptionPhotoUrl) {
+    public Shop(long id, String shopHeading, String shopDescription, String shopTeleNum, String shopAddress, String shopMessageHeader, String shopMessageDescription, String shopAppointmentsDescription, String monOpen, String monClose, String tueOpen, String tueClose, String wedOpen, String wedClose, String thuOpen, String thuClose, String friOpen, String friClose, String satOpen, String satClose, String sunOpen, String sunClose, List<Photo> photos, String drinkPhotoName, String shopPhotoName, String shopDescriptionPhotoName,String instagramLink, String facebookLink, String shopPhotoUrl, String shopDescriptionPhotoUrl,String shopDrinkPhotoUrl) {
         this.id = id;
         this.shopHeading = shopHeading;
         this.shopDescription = shopDescription;
@@ -99,6 +101,7 @@ public class Shop {
         this.facebookLink = facebookLink;
         this.shopPhotoUrl = shopPhotoUrl;
         this.shopDescriptionPhotoUrl = shopDescriptionPhotoUrl;
+        this.shopDrinkPhotoUrl = shopDrinkPhotoUrl;
     }
 
     public long getId() {
@@ -339,5 +342,13 @@ public class Shop {
 
     public void setShopDescriptionPhotoUrl(String shopDescriptionPhotoUrl) {
         this.shopDescriptionPhotoUrl = shopDescriptionPhotoUrl;
+    }
+
+    public String getShopDrinkPhotoUrl() {
+        return shopDrinkPhotoUrl;
+    }
+
+    public void setShopDrinkPhotoUrl(String shopDrinkPhotoUrl) {
+        this.shopDrinkPhotoUrl = shopDrinkPhotoUrl;
     }
 }

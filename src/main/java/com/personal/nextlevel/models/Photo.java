@@ -19,6 +19,8 @@ public class Photo {
 
     private String photoUrl;
 
+    private String shopPortfolioImageUrl;
+
     @ManyToOne
     @JoinColumn(name = "barber_id")
     private Barber barber;
@@ -29,7 +31,7 @@ public class Photo {
 
     public Photo(){}
 
-    public Photo(Long id, String photoName, String photoType, byte[] picByte, Barber barber, Shop shop, String photoUrl) {
+    public Photo(Long id, String photoName, String photoType, byte[] picByte, Barber barber, Shop shop, String photoUrl, String shopPortfolioImageUrl) {
         this.id = id;
         this.photoName = photoName;
         this.photoType = photoType;
@@ -37,6 +39,7 @@ public class Photo {
         this.barber = barber;
         this.shop = shop;
         this.photoUrl = photoUrl;
+        this.shopPortfolioImageUrl = shopPortfolioImageUrl;
     }
 
     public void setId(Long id) {
@@ -93,5 +96,13 @@ public class Photo {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public String getShopPortfolioImageUrl() {
+        return shopPortfolioImageUrl;
+    }
+
+    public void setShopPortfolioImageUrl(String shopPortfolioImageUrl) {
+        this.shopPortfolioImageUrl = shopPortfolioImageUrl;
     }
 }

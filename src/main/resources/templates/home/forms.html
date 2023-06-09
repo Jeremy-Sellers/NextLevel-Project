@@ -294,24 +294,25 @@
             </div>
         </div>
     </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingEight">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                Upload Drink image
-            </button>
-        </h2>
-        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <form th:action="@{/shopDrinkUpload}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Photo will replace drink photo under shop description</label>
-                    <input name="file" type="file" />
-                    <br />
-                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                    <input type="submit" value="upload" class="m-2"/>
-                </form>
-            </div>
-        </div>
-    </div>
+<!--    <div class="accordion-item">-->
+<!--        <h2 class="accordion-header" id="headingEight">-->
+<!--            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">-->
+<!--                Upload Drink image-->
+<!--            </button>-->
+<!--        </h2>-->
+<!--        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">-->
+<!--            <div class="accordion-body">-->
+<!--                <form id="drinkPhotoForm" th:action="@{/shopDrinkUpload}" method="POST" enctype="multipart/form-data">-->
+<!--                    <label for="filepicker4">Photo will replace drink photo under shop description</label>-->
+<!--                    <button id="filepicker4" type="button">upload image</button>-->
+<!--                    <br />-->
+<!--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>-->
+<!--                    <input type="hidden" id="photoUrl4" name="photoUrl4">-->
+<!--                    <input type="submit" id="submit-button4" value="upload" class="m-2"/>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 <!--    <div class="accordion-item">-->
 <!--        <h2 class="accordion-header" id="headingNine">-->
 <!--            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">-->
@@ -402,12 +403,13 @@
         </h2>
         <div id="collapseFourteen" class="accordion-collapse collapse" aria-labelledby="headingFourteen" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form th:action="@{/addShopPortfolioPhoto}" method="POST" enctype="multipart/form-data">
-                    <label for="file">Choose Photo to add to portfolio slideshow</label>
-                    <input name="file" type="file" />
+                <form id="portfolioUploadForm" th:action="@{/addShopPortfolioPhoto}" method="POST">
+                    <label for="filepicker4">Choose Photo to add to portfolio slideshow</label>
+                    <button id="filepicker4" type="button"/>upload image</button>
                     <br />
+                    <input type="hidden" id="photoUrl4" name="photoUrl4">
                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                    <input type="submit" value="upload" class="m-2"/>
+                    <input type="submit" id="submit-button4" value="upload" class="m-2"/>
                 </form>
             </div>
         </div>
@@ -419,9 +421,10 @@
             </button>
         </h2>
         <div id="collapseFifteen" class="accordion-collapse collapse" aria-labelledby="headingFifteen" data-bs-parent="#accordionExample">
-            <div class="accordion-body" th:each="photo : ${photo}">
+            <div class="accordion-body" th:each="photo : ${photo}" th:if="${photo.shopPortfolioImageUrl != null}">
                 <div class="card-body">
                     <p>Name: <span th:text="${photo.photoName}"></span> </p>
+                    <p>URL: <a th:href="@{${photo.shopPortfolioImageUrl}}" target="_blank" rel="noopener noreferrer">Open URL</a></p>
                 </div>
                 <form class="deleteForm" th:method="post" th:action="@{/deleteShopPortfolioPhoto}">
                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
@@ -573,6 +576,30 @@ document.getElementById('createBarberForm').addEventListener('submit', function(
         alert("Please upload the image first.");
     }
 });
+//Create barber photo
+
+//Upload Portfolio photo
+var client4 = filestack.init('AIQ7pTLJSPeMuorhInEAtz');
+document.getElementById('filepicker4').addEventListener('click', function(e) {
+    e.preventDefault();
+    var options = {
+        onUploadDone: function(response) {
+            document.getElementById('photoUrl4').value = response.filesUploaded[0].url;
+            document.getElementById('submit-button4').disabled = false;
+        }
+    };
+    var picker4 = client4.picker(options);
+    picker4.open();
+});
+
+document.getElementById('portfolioUploadForm').addEventListener('submit', function(e) {
+    if (!document.getElementById('photoUrl4').value) {
+        e.preventDefault();
+        alert("Please upload the image first.");
+    }
+});
+//Upload Portfolio photo
+
 </script>
 
 
