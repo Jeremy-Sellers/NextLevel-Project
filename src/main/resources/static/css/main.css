@@ -12,6 +12,7 @@
     color: white;
 }
 
+
 .shopBG{
     width: 100%;
     height: auto;
@@ -60,6 +61,19 @@
 .infoContainer{
     display: flex;
     justify-content: center;
+}
+
+
+.hoursContainer div h4{
+    font-size: 3em;
+}
+
+.hoursContainer h3{
+    font-size: 3em;
+}
+
+.shopSocials{
+    font-size: 2em;
 }
 
 .signupBody{
@@ -132,7 +146,18 @@
     position: relative;
     margin: 0 auto;
 }
-@media (max-width: 600px) {
+.service-header{
+    color: rgb(243,187,34);
+    font-size: 3em;
+}
+
+.services-list{
+    list-style: none;
+    color: whitesmoke;
+    font-size: 3em;
+}
+
+@media screen and (max-width: 600px) {
     .drinkPhotoContainer {
         height: 1vh; /* Adjusted height for mobile screens */
     }
