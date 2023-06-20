@@ -5,7 +5,7 @@
 
 .body{
     background-color: black;
-    font-family: Serif;
+    font-family: Serif, serif;
 }
 
 #shopInfo{
@@ -66,14 +66,20 @@
 
 .hoursContainer div h4{
     font-size: 3em;
+    font-family: Serif, serif;
+
 }
 
 .hoursContainer h3{
     font-size: 3em;
+    font-family: Serif, serif;
+
 }
 
 .shopSocials{
     font-size: 2em;
+    font-family: Serif, serif;
+
 }
 
 .signupBody{
@@ -155,6 +161,7 @@
     list-style: none;
     color: whitesmoke;
     font-size: 3em;
+    font-family: Serif;
 }
 
 @media screen and (max-width: 600px) {
@@ -300,4 +307,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.reviewHeader{
+    font-size: 2em;
+}
+.reviewBody{
+    font-size: 2em;
 }

@@ -31,8 +31,8 @@
     <section class="px-4 mt-2 pt-2 barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
-            <div class="card m-2 border-dark barberParentCard col-8" style="width: 20rem;">
-                <img th:src="${barber.photoUrl}">
+            <div class="card m-2 border-dark barberParentCard col-8" style="width: 60rem;">
+                <img th:src="${barber.photoUrl}" class="w-100">
                 <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>
                     <p th:text="${barber.bio}"></p>
@@ -67,8 +67,8 @@
 
         <div class="card text-center shopDescription" style="width: auto;" th:each="shop : ${shops}">
             <div class="card-body">
-                <h2 class="card-title text-center" style="color:rgb(243,187,34); text-decoration: underline" th:text="${shop.shopHeading}"></h2>
-                <h5 class="card-text px-3 mx-5" th:text="${shop.shopDescription}"></h5>
+                <h2 class="card-title text-center" style="color:rgb(243,187,34); text-decoration: underline; font-size: 2em" th:text="${shop.shopHeading}"></h2>
+                <h5 class="card-text px-3 mx-5" style="font-size: 2em" th:text="${shop.shopDescription}"></h5>
             </div>
         </div>
 
@@ -80,15 +80,15 @@
         <div class="servicesContainer text-center m-2">
             <div class="card-body">
                 <div th:object="${shops}">
-                    <h2 class="text-center card-title" style="color: rgb(243,187,34); text-decoration: underline" >Appointments and Walk ins</h2>
-                    <h5 class="card-text px-3 mx-5" style="color: whitesmoke" th:text="${shops.shopAppointmentsDescription}"></h5>
+                    <h2 class="text-center card-title" style="color: rgb(243,187,34); text-decoration: underline; font-size: 2em" >Appointments and Walk ins</h2>
+                    <h5 class="card-text px-3 mx-5" style="color: whitesmoke; font-size: 2em" th:text="${shops.shopAppointmentsDescription}"></h5>
                 </div>
             </div>
         </div>
 
 
     <h4 class="pt-2 mt-2 text-center" style="color: rgb(243,187,34);
-text-decoration: underline">Reviews</h4>
+text-decoration: underline; font-size: 2em">Reviews</h4>
     <div class="reviewsCarousel p-3 d-flex min justify-content-center" id="reviews">
 
         <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
