@@ -28,6 +28,13 @@
             </div>
         </blockquote>
 
+        <div class="card text-center shopDescription" style="width: auto;" th:each="shop : ${shops}">
+            <div class="card-body">
+                <h2 class="card-title text-center" style="color:rgb(243,187,34); text-decoration: underline; font-size: 2em" th:text="${shop.shopHeading}"></h2>
+                <h5 class="card-text px-3 mx-5" style="font-size: 2em" th:text="${shop.shopDescription}"></h5>
+            </div>
+        </div>
+
     <section class="px-4 mt-2 pt-2 barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
@@ -65,12 +72,12 @@
     <section id="shopDescription">
 
 
-        <div class="card text-center shopDescription" style="width: auto;" th:each="shop : ${shops}">
-            <div class="card-body">
-                <h2 class="card-title text-center" style="color:rgb(243,187,34); text-decoration: underline; font-size: 2em" th:text="${shop.shopHeading}"></h2>
-                <h5 class="card-text px-3 mx-5" style="font-size: 2em" th:text="${shop.shopDescription}"></h5>
-            </div>
-        </div>
+<!--        <div class="card text-center shopDescription" style="width: auto;" th:each="shop : ${shops}">-->
+<!--            <div class="card-body">-->
+<!--                <h2 class="card-title text-center" style="color:rgb(243,187,34); text-decoration: underline; font-size: 2em" th:text="${shop.shopHeading}"></h2>-->
+<!--                <h5 class="card-text px-3 mx-5" style="font-size: 2em" th:text="${shop.shopDescription}"></h5>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
         <section class="drinkPhotoContainer"></section>
