@@ -31,7 +31,7 @@
     <section class="px-4 mt-2 pt-2 barberList" id="barberList" >
 
         <div th:each="barber : ${barbers}">
-            <div class="card m-2 border-dark barberParentCard col-8" style="width: 60rem;">
+            <div class="card m-2 border-dark barberParentCard col-8" style="width: 50rem;">
                 <img th:src="${barber.photoUrl}" class="w-100">
                 <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>

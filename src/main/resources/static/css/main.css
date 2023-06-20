@@ -141,8 +141,8 @@
 
 .drinkPhotoContainer{
     background-image: url("../images/NextLevelDrink.jpeg");
-    width: 80%;
-    height: 130vh;
+    /*width: 80%;*/
+    height: 50em;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
