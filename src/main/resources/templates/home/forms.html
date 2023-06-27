@@ -458,27 +458,6 @@
         </div>
     </div>
     <div class="accordion-item">
-        <h2 class="accordion-header" id="headingSixteen">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
-                Delete Service
-            </button>
-        </h2>
-        <div id="collapseSixteen" class="accordion-collapse collapse" aria-labelledby="headingSixteen" data-bs-parent="#accordionExample">
-            <div class="accordion-body" th:each="service : ${services}">
-                <div class="card-body">
-                    <p>Service: <span th:text="${service.serviceName}"></span> </p>
-                </div>
-                <form class="deleteForm" th:method="post" th:action="@{/deleteService}">
-                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                    <input type="hidden" th:value="${service.id}" name="deleteService">
-                    <button class="btn btn-primary px-3 mx-auto border-0">
-                        Delete Service
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
         <h2 class="accordion-header" id="headingNineteen">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNineteen" aria-expanded="false" aria-controls="collapseNineteen">
                 Delete Barber Portfolio photo
@@ -501,6 +480,27 @@
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSixteen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
+                Delete Service
+            </button>
+        </h2>
+        <div id="collapseSixteen" class="accordion-collapse collapse" aria-labelledby="headingSixteen" data-bs-parent="#accordionExample">
+            <div class="accordion-body" th:each="service : ${services}">
+                <div class="card-body">
+                    <p>Service: <span th:text="${service.serviceName}"></span> </p>
+                </div>
+                <form class="deleteForm" th:method="post" th:action="@{/deleteService}">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                    <input type="hidden" th:value="${service.id}" name="deleteService">
+                    <button class="btn btn-primary px-3 mx-auto border-0">
+                        Delete Service
+                    </button>
+                </form>
             </div>
         </div>
     </div>
