@@ -30,6 +30,7 @@ public class HomeController {
         model.addAttribute("shops", shopDao.findById(1));
         model.addAttribute("reviews", reviewDao.findAll());
         model.addAttribute("photos", photoDao.findAllByShop(shopDao.getById(1)));
+        model.addAttribute("barberPhotos",photoDao.findAll());
         model.addAttribute("services", serviceDao.findAll());
         return "home/home";
     }

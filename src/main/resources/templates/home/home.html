@@ -43,6 +43,13 @@
                 <div class="card-body barberCard">
                     <h5 th:text="${barber.firstName}"></h5>
                     <p th:text="${barber.bio}"></p>
+
+                    <div class="portfolio-thumbnails">
+                        <div th:each="photo : ${barberPhotos}" th:if="${photo.barber != null and photo.barber.id == barber.id and photo.barberPortfolioUrl != null and !photo.barberPortfolioUrl.isEmpty()}">
+                            <img th:src="${photo.barberPortfolioUrl}" class="portfolio-thumbnail" th:attr="data-fullsize=${photo.barberPortfolioUrl}">
+                        </div>
+                    </div>
+
                     <a th:href="${'https://' + barber.link}" class="btn appointmentBtn">Book an appointment</a>
                 </div>
             </div>
@@ -188,6 +195,45 @@ text-decoration: underline; font-size: 2em">Reviews</h4>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const thumbnails = document.querySelectorAll('.portfolio-thumbnail');
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const fullsizeUrl = this.dataset.fullsize;
+
+                // Create modal
+                const modal = document.createElement('div');
+                modal.classList.add('modal');
+
+                // Create image for modal
+                const img = document.createElement('img');
+                img.src = fullsizeUrl;
+                img.classList.add('modal-content');
+
+                // Create close button for modal
+                const closeButton = document.createElement('span');
+                closeButton.innerHTML = '&times;';
+                closeButton.classList.add('modal-close');
+
+                // Append image and close button to modal
+                modal.appendChild(img);
+                modal.appendChild(closeButton);
+
+                // Append modal to body
+                document.body.appendChild(modal);
+
+                // Display modal
+                modal.style.display = 'block';
+
+                // Add event listener to close the modal
+                closeButton.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.removeChild(modal);
+                });
+            });
+        });
+    });
 
 </script>
+
 </html>

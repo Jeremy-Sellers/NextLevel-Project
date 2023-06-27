@@ -437,6 +437,27 @@
         </div>
     </div>
     <div class="accordion-item">
+        <h2 class="accordion-header" id="headingEighteen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEighteen" aria-expanded="false" aria-controls="collapseEighteen">
+                Upload Barber Portfolio Image
+            </button>
+        </h2>
+        <div id="collapseEighteen" class="accordion-collapse collapse" aria-labelledby="headingEighteen" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form id="barberPortfolioUploadForm" th:action="@{/barberPortfolioUpload}" method="POST">
+                    <label for="filepicker5">Choose Photo to add to portfolio slideshow</label>
+                    <button id="filepicker5" type="button"/>upload image</button>
+                    <br />
+                    <label for="barber2">Select a barber by id </label>
+                    <input id="barber2" name="barber2" type="number" min="1">
+                    <input type="hidden" id="photoUrl5" name="photoUrl5">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                    <input type="submit" id="submit-button5" value="upload" class="m-2"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
         <h2 class="accordion-header" id="headingSixteen">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
                 Delete Service
@@ -454,6 +475,32 @@
                         Delete Service
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNineteen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNineteen" aria-expanded="false" aria-controls="collapseNineteen">
+                Delete Barber Portfolio photo
+            </button>
+        </h2>
+        <div id="collapseNineteen" class="accordion-collapse collapse" aria-labelledby="headingNineteen" data-bs-parent="#accordionExample">
+            <div class="accordion-body" th:each="barber : ${barbers}">
+                <div class="card-body">
+                    <h3>Name:</h3> <span th:text="${barber.firstName}"></span> <span th:text="${barber.lastName}"></span><br>
+                </div>
+                <div class="portfolio-thumbnails">
+                    <div th:each="photo : ${barberPhotos}" th:if="${photo.barber != null and photo.barber.id == barber.id and photo.barberPortfolioUrl != null and !photo.barberPortfolioUrl.isEmpty()}">
+                        <img th:src="${photo.barberPortfolioUrl}" class="portfolio-thumbnail" th:attr="data-fullsize=${photo.barberPortfolioUrl}" style="width: 3em; height: 3em">
+                        <form class="deleteForm" th:method="post" th:action="@{/deleteBarberPortfolioPhoto}">
+                            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                            <input type="hidden" th:value="${photo.id}" name="deleteBarberPortfolio">
+                            <button class="btn btn-primary px-3 m-3 border-0">
+                                Delete Photo
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -600,6 +647,25 @@ document.getElementById('portfolioUploadForm').addEventListener('submit', functi
 });
 //Upload Portfolio photo
 
+var client5 = filestack.init('AIQ7pTLJSPeMuorhInEAtz');
+document.getElementById('filepicker5').addEventListener('click', function(e) {
+    e.preventDefault();
+    var options = {
+        onUploadDone: function(response) {
+            document.getElementById('photoUrl5').value = response.filesUploaded[0].url;
+            document.getElementById('submit-button5').disabled = false;
+        }
+    };
+    var picker5 = client5.picker(options);
+    picker5.open();
+});
+
+document.getElementById('portfolioUploadForm').addEventListener('submit', function(e) {
+    if (!document.getElementById('photoUrl5').value) {
+        e.preventDefault();
+        alert("Please upload the image first.");
+    }
+});
 </script>
 
 

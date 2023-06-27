@@ -49,6 +49,7 @@ public class FormsController {
         model.addAttribute("drinks", drinkDao.findAll());
         model.addAttribute("shop", shopDao.findById(1));
         model.addAttribute("photo", photoDao.findAll());
+        model.addAttribute("barberPhotos",photoDao.findAll());
         model.addAttribute("users",userDao.findAll());
         model.addAttribute("review", new Review());
         model.addAttribute("reviews",reviewDao.findAll());
@@ -108,6 +109,12 @@ public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "pho
     @PostMapping("/deleteService")
     public String deleteService(@RequestParam(name = "deleteService") long id){
         serviceDao.deleteById(id);
+        return "redirect:/";
+    }
+
+    @PostMapping("/deleteBarberPortfolioPhoto")
+    public String deleteBarberPortfolio(@RequestParam(name = "deleteBarberPortfolio") long id){
+        photoDao.deleteById(id);
         return "redirect:/";
     }
 
@@ -214,6 +221,21 @@ public String addBarber(@ModelAttribute Barber barber, @RequestParam(name = "pho
             Shop shop = shopDao.getById(1);
             shop.setShopPhotoUrl(photoUrl2);
             photo.setShop(shop);
+            photoDao.save(photo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/barberPortfolioUpload")
+    public String uploadBarberPortfolio(@RequestParam(name = "photoUrl5") String photoUrl5,@RequestParam(name = "barber2") long id){
+        try {
+            Barber barber = barberDao.getById(id);
+            Photo photo = new Photo();
+            photo.setBarberPortfolioUrl(photoUrl5);
+            photo.setBarber(barber);
             photoDao.save(photo);
         } catch (Exception e) {
             e.printStackTrace();
