@@ -60,14 +60,14 @@
 <!--Section For Shop Portfolio Carousel-->
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" >
+            <div class="carousel-item active" data-bs-interval="3000">
 <!--                hardcode first picture-->
                 <img src="../images/NextLevel.jpeg" class="d-block w-100" alt="...">
             </div>
 <!--            remaining pictures will be a th:each"" to loop through photos-->
             <div th:each="photo : ${photos}" th:if="${photo.shopPortfolioImageUrl != null}">
                 <div th:unless="${photo.photoName == 'IMG_4079.jpg'}">
-                    <div class="carousel-item" >
+                    <div class="carousel-item" data-bs-interval="3000">
                         <img th:src="${photo.shopPortfolioImageUrl}" class="d-block w-100" alt="...">
                     </div>
                 </div>
